@@ -1,17 +1,13 @@
 import React, { useMemo } from "react";
-import { MyForm } from "../searchForm";
+import { MyHeader } from "../header";
 import("./layuot.css");
 
 import { useNavigate, Outlet } from "react-router-dom";
 
 function Layout(props) {
-  const navigate = useNavigate();
-  function handleClick(value) {
-    navigate("/search/" + value);
-  }
   return (
     <div className="root-layout">
-      <MyForm onSearch={handleClick}></MyForm>
+      <MyHeader />
       <div>
         <Outlet />
       </div>
