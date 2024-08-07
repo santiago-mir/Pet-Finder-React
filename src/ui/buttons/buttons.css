@@ -1,0 +1,10 @@
+.root {
+  background-color: black;
+  color: white;
+  border: none;
+  font-weight: bold;
+  border-radius: 10px;
+}
+.root:hover {
+  background-color: blueviolet;
+}
