@@ -4,7 +4,7 @@ import {
   Route,
   createRoutesFromElements,
 } from "react-router-dom";
-import { App } from "../pages/app";
+import { HomePage } from "../pages/home/home";
 import { Search } from "../pages/search";
 
 import { Layout } from "../components/layout";
@@ -12,7 +12,7 @@ import { Layout } from "../components/layout";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
-      <Route index element={<App />} />
+      <Route index element={<HomePage />} />
       <Route path="/search/:query" element={<Search />} />
     </Route>
   )

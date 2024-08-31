@@ -1,6 +1,10 @@
 import React from "react";
-import * as css from "./buttons.css";
+import Button from "@mui/material/Button";
 
 export function MainButton({ children }) {
-  return <button className={css.root}>{children}</button>;
+  return (
+    <Button variant="contained" color="primary">
+      {children}
+    </Button>
+  );
 }

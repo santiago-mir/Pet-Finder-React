@@ -1,0 +1,11 @@
+.home {
+  margin-top: 15px;
+  display: grid;
+  justify-content: center;
+  align-content: flex-start;
+  height: 80vh;
+}
+
+.logo {
+  justify-self: center;
+}
