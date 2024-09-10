@@ -5,17 +5,17 @@ type formProps = {
   onSearch: (any) => any;
 };
 
-function MyForm(props: formProps) {
+function otroForm(props: formProps) {
   const handleSubmit = (e) => {
     e.preventDefault();
     props.onSearch(e.target.item.value);
   };
   return (
     <form onSubmit={handleSubmit} className="form">
-      <TextField type="text" name="item"></TextField>
+      <TextField label="algo" type="text" name="item"></TextField>
       <MainButton>Buscar</MainButton>
     </form>
   );
 }
 
-export { MyForm };
+export { otroForm };

@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import * as css from "./header.css";
 import mainImage from "../../assets/logo.png";
 import BasicMenu from "../../ui/material-menu";
-console.log(mainImage);
+
 function MyHeader(props) {
   return (
     <header className={css.header}>

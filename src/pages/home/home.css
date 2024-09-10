@@ -5,6 +5,12 @@
   align-content: flex-start;
   height: 80vh;
 }
+.container {
+  display: grid;
+  padding: 40px;
+  gap: 10px;
+  align-items: center;
+}
 
 .logo {
   justify-self: center;

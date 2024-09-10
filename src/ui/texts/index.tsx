@@ -26,3 +26,16 @@ export function SecondaryText({ children }) {
     </Typography>
   );
 }
+
+export function SmallText({ children }) {
+  return (
+    <Typography
+      variant="body2"
+      fontSize={15}
+      color={"black"}
+      fontWeight={"400"}
+    >
+      {children}
+    </Typography>
+  );
+}
