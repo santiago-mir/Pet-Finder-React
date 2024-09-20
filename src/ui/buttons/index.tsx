@@ -1,9 +1,9 @@
 import React from "react";
 import Button from "@mui/material/Button";
 
-export function MainButton({ children }) {
+export function MainButton({ children, handleClick }) {
   return (
-    <Button variant="contained" color="primary">
+    <Button onClick={handleClick} variant="contained" color="primary">
       {children}
     </Button>
   );

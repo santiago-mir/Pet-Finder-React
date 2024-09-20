@@ -5,6 +5,7 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 import { HomePage } from "../pages/home/home";
+import { LoginPage } from "../pages/login/login";
 import { Search } from "../pages/search";
 
 import { Layout } from "../components/layout";
@@ -13,6 +14,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
       <Route index element={<HomePage />} />
+      <Route path="/login" element={<LoginPage />} />
       <Route path="/search/:query" element={<Search />} />
     </Route>
   )
