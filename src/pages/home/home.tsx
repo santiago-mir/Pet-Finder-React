@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import mainImage from "../../assets/logo.png";
 import { MainText, SecondaryText } from "../../ui/texts";
 import { MainButton } from "../../ui/buttons";
-import { MyForm } from "../../components/form";
+
 import { useNavigate } from "react-router-dom";
 import * as css from "./home.css";
 

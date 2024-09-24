@@ -10,3 +10,15 @@
   display: grid;
   min-width: 350px;
 }
+
+.image {
+  object-fit: scale-down;
+}
+
+.text-container {
+  display: flex;
+  flex-direction: column;
+}
+.texts {
+  text-decoration: none;
+}

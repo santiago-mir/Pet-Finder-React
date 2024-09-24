@@ -1,12 +1,13 @@
 import React from "react";
-import { SmallText } from "../texts";
-import * as css from "./styles.css";
+import TextField from "@mui/material/TextField";
 
-export function TextField({ label, type, name }) {
+export function MyTextField({ label, type, name }) {
   return (
-    <label className={css.label}>
-      <SmallText>{label}</SmallText>
-      <input className={css.input} type={type} name={name} />
-    </label>
+    <TextField
+      variant="outlined"
+      type={type}
+      label={label}
+      name={name}
+    ></TextField>
   );
 }
