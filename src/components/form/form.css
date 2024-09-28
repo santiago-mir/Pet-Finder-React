@@ -19,6 +19,9 @@
   display: flex;
   flex-direction: column;
 }
-.texts {
+.link {
   text-decoration: none;
+}
+.texts {
+  color: rgb(0, 103, 184);
 }

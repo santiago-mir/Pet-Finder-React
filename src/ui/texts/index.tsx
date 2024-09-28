@@ -27,12 +27,12 @@ export function SecondaryText({ children }) {
   );
 }
 
-export function SmallText({ children }) {
+export function LinksText({ children }) {
   return (
     <Typography
       variant="body2"
       fontSize={15}
-      color={"black"}
+      color="rgb(41, 126, 193)"
       fontWeight={"400"}
     >
       {children}
