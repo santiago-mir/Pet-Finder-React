@@ -10,7 +10,7 @@ function Layout(props) {
   return (
     <div className={css.root}>
       <MyHeader />
-      <div>
+      <div className={css.container}>
         <Outlet />
       </div>
     </div>

@@ -8,3 +8,11 @@ export function MainButton({ children, handleClick }) {
     </Button>
   );
 }
+
+export function SecondaryButton({ children, handleClick }) {
+  return (
+    <Button onClick={handleClick} variant="contained" color="success">
+      {children}
+    </Button>
+  );
+}

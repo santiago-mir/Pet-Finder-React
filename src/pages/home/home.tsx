@@ -31,7 +31,6 @@ function HomePage(props) {
           ¿Como Funciona Pet Finder?
         </MainButton>
       </div>
-      {/* <MyForm>Soy el form</MyForm> */}
     </div>
   );
 }
