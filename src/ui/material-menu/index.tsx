@@ -40,10 +40,10 @@ export default function BasicMenu() {
             console.log("me clickearon");
           }}
         >
-          Profile
+          Mi perfil
         </MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        <MenuItem onClick={handleClose}>Mis mascotas reportadas</MenuItem>
+        <MenuItem onClick={handleClose}>Iniciar Sesion</MenuItem>
       </Menu>
     </div>
   );

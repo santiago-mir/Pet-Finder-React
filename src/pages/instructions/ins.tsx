@@ -21,10 +21,11 @@ function InstructionsPage(props) {
       </SecondaryText>
 
       <div className={css.container}>
-        <SecondaryButton handleClick={() => {}}>
+        <SecondaryButton type="button" handleClick={() => {}}>
           Compartir mi Ubicacion
         </SecondaryButton>
         <SecondaryButton
+          type="button"
           handleClick={() => {
             navigate("/login");
           }}

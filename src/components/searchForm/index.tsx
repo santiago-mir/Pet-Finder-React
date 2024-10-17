@@ -1,6 +1,6 @@
 import React from "react";
 import { MainButton } from "../../ui/buttons";
-import { TextField } from "../../ui/text-fields";
+
 type formProps = {
   onSearch: (any) => any;
 };
@@ -10,12 +10,7 @@ function otroForm(props: formProps) {
     e.preventDefault();
     props.onSearch(e.target.item.value);
   };
-  return (
-    <form onSubmit={handleSubmit} className="form">
-      <TextField label="algo" type="text" name="item"></TextField>
-      <MainButton>Buscar</MainButton>
-    </form>
-  );
+  return <form onSubmit={handleSubmit} className="form"></form>;
 }
 
 export { otroForm };

@@ -17,6 +17,7 @@ function HomePage(props) {
       </SecondaryText>
       <div className={css.container}>
         <MainButton
+          type="button"
           handleClick={() => {
             navigate("/login");
           }}
@@ -24,6 +25,7 @@ function HomePage(props) {
           Inicia Sesion
         </MainButton>
         <MainButton
+          type="button"
           handleClick={() => {
             navigate("/instructions");
           }}

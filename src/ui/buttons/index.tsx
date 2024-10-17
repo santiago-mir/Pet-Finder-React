@@ -1,17 +1,27 @@
 import React from "react";
 import Button from "@mui/material/Button";
 
-export function MainButton({ children, handleClick }) {
+export function MainButton({ children, type, handleClick }) {
   return (
-    <Button onClick={handleClick} variant="contained" color="primary">
+    <Button
+      type={type}
+      onClick={handleClick}
+      variant="contained"
+      color="primary"
+    >
       {children}
     </Button>
   );
 }
 
-export function SecondaryButton({ children, handleClick }) {
+export function SecondaryButton({ children, type, handleClick }) {
   return (
-    <Button onClick={handleClick} variant="contained" color="success">
+    <Button
+      type={type}
+      onClick={handleClick}
+      variant="contained"
+      color="success"
+    >
       {children}
     </Button>
   );

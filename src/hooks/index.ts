@@ -14,3 +14,5 @@ export function useSearchResults() {
 
   return results;
 }
+
+export function handleLogin(name, email, password, confirmPassword) {}
