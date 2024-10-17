@@ -1,0 +1,27 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.container {
+  padding: 30px;
+  gap: 30px;
+  display: grid;
+  min-width: 350px;
+}
+
+.image {
+  object-fit: scale-down;
+}
+
+.text-container {
+  display: flex;
+  flex-direction: column;
+}
+.link {
+  text-decoration: none;
+}
+.texts {
+  color: rgb(0, 103, 184);
+}
