@@ -5,7 +5,7 @@ import * as css from "./login.css";
 function LoginPage(props) {
   return (
     <div className={css.login}>
-      <LoginForm handleForm={() => {}}></LoginForm>
+      <LoginForm handleLoginForm={() => {}}></LoginForm>
     </div>
   );
 }

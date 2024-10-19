@@ -21,3 +21,16 @@ export const resultsState = selector({
     }
   },
 });
+
+export const loggedInAtom = atom({
+  key: "loggedInState",
+  default: null,
+});
+
+export const loggedInState = selector({
+  key: "userNameState",
+  get: ({ get }) => {
+    const loggedInData = get(loggedInAtom);
+    return loggedInData;
+  },
+});

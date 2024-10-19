@@ -1,18 +1,26 @@
 import { useRecoilState, useRecoilValue } from "recoil";
-import { resultsState, queryAtom } from "../recoil";
-import { useParams } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import { loggedInAtom } from "../recoil";
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { signUpToAPI } from "../lib/api";
 
-export function useSearchResults() {
-  const params = useParams().query;
-  const [query, setQuery] = useRecoilState(queryAtom);
-  const results = useRecoilValue(resultsState);
+export function useLogin() {
+  const [loggedIn, setLogIn] = useRecoilState(loggedInAtom);
+  const navigate = useNavigate();
 
+  async function handleLogin(name, email, password, confirmPassword) {
+    try {
+      const res = await signUpToAPI(name, email, password, confirmPassword);
+      setLogIn(res);
+    } catch (error) {
+      console.error("Error en la llamada a la API:", error);
+    }
+  }
   useEffect(() => {
-    setQuery(params);
-  }, [params]);
+    if (loggedIn) {
+      navigate("/");
+    }
+  }, [loggedIn]);
 
-  return results;
+  return { handleLogin, loggedIn };
 }
-
-export function handleLogin(name, email, password, confirmPassword) {}
