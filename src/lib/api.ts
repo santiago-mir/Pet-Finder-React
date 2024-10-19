@@ -4,7 +4,7 @@ export async function signUpToAPI(
   password: string,
   confirmPassword: string
 ): Promise<any> {
-  const response = await fetch(
+  const signUpRes = await fetch(
     "https://pet-finder-app-uuds.onrender.com/auth",
     {
       method: "POST",
@@ -19,5 +19,26 @@ export async function signUpToAPI(
       }),
     }
   );
-  return response.json(); // Retorna la respuesta en formato JSON
+  const loginResponse = await loginToAPI(email, password);
+  return loginResponse;
+}
+
+export async function loginToAPI(
+  email: string,
+  password: string
+): Promise<any> {
+  const response = await fetch(
+    "https://pet-finder-app-uuds.onrender.com/auth/token",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    }
+  );
+  return response.json();
 }
