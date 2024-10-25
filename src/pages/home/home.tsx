@@ -18,29 +18,63 @@ function HomePage(props) {
   }
   return (
     <div className={css.home}>
-      <MainText>Bienvenido a Pet Finder</MainText>
+      <MainText>
+        Bienvenido a Pet Finder{" "}
+        {loggedInStatus ? <div>{loggedInStatus.user.firstName}</div> : null}
+      </MainText>
       <img className={css.logo} src={mainImage} alt="logo" />
       <SecondaryText>
         Encontrá y reportá mascotas perdidas cerca de tu ubicación
       </SecondaryText>
-      <div className={css.container}>
-        <MainButton
-          type="button"
-          handleClick={() => {
-            navigate("/login");
-          }}
-        >
-          Inicia Sesion
-        </MainButton>
-        <MainButton
-          type="button"
-          handleClick={() => {
-            navigate("/instructions");
-          }}
-        >
-          ¿Como Funciona Pet Finder?
-        </MainButton>
-      </div>
+      {loggedInStatus ? (
+        // si el user esta logueado
+        <div className={css.container}>
+          <MainButton
+            type="button"
+            handleClick={() => {
+              console.log("hola");
+            }}
+          >
+            Dar mi Ubicacion Actual
+          </MainButton>
+          <MainButton
+            type="button"
+            handleClick={() => {
+              console.log("hola");
+            }}
+          >
+            Reportar una Mascota Perdida
+          </MainButton>
+          <MainButton
+            type="button"
+            handleClick={() => {
+              console.log("hola");
+            }}
+          >
+            Cerrar Sesion
+          </MainButton>
+        </div>
+      ) : (
+        // si el user no esta logueado
+        <div className={css.container}>
+          <MainButton
+            type="button"
+            handleClick={() => {
+              navigate("/login");
+            }}
+          >
+            Inicia Sesion
+          </MainButton>
+          <MainButton
+            type="button"
+            handleClick={() => {
+              navigate("/instructions");
+            }}
+          >
+            ¿Como Funciona Pet Finder?
+          </MainButton>
+        </div>
+      )}
     </div>
   );
 }
