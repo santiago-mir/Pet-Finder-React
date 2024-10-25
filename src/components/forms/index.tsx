@@ -43,10 +43,10 @@ function SignUpForm({ handleSignupForm }) {
     e.preventDefault();
     const target = e.target as any;
     handleSignupForm(
-      target.name.value,
       target.email.value,
       target.password.value,
-      target.confirmPassword.value
+      target.confirmPassword.value,
+      target.name.value
     );
   };
   return (

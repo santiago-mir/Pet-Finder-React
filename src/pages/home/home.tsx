@@ -6,8 +6,10 @@ import { useNavigate } from "react-router-dom";
 import { loggedInState } from "../../recoil";
 import * as css from "./home.css";
 import { useRecoilValue } from "recoil";
+import { useLogOut } from "../../hooks";
 
 function HomePage(props) {
+  const { handleLogOut } = useLogOut();
   const navigate = useNavigate();
   const loggedInStatus = useRecoilValue(loggedInState);
   if (loggedInStatus) {
@@ -45,12 +47,7 @@ function HomePage(props) {
           >
             Reportar una Mascota Perdida
           </MainButton>
-          <MainButton
-            type="button"
-            handleClick={() => {
-              console.log("hola");
-            }}
-          >
+          <MainButton type="button" handleClick={handleLogOut}>
             Cerrar Sesion
           </MainButton>
         </div>
