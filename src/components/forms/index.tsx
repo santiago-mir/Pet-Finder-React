@@ -78,4 +78,44 @@ function SignUpForm({ handleSignupForm }) {
   );
 }
 
-export { LoginForm, SignUpForm };
+function ChangeUserDataForm({ name, email, handleChangeData }) {
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const target = e.target as any;
+    handleChangeData(
+      target.email.value,
+      target.password.value,
+      target.confirmPassword.value,
+      target.name.value
+    );
+  };
+  return (
+    <Card className={css.container}>
+      <SecondaryText>Mis Datos Personales</SecondaryText>
+      <form onSubmit={onSubmit} className={css.form}>
+        <MyTextField
+          label="Nombre"
+          type="text"
+          name="name"
+          placeholder={name}
+        ></MyTextField>
+        <MyTextField
+          label="Email"
+          type="email"
+          name="email"
+          placeholder={email}
+        ></MyTextField>
+        <MainButton type="submit" handleClick={() => {}}>
+          Editar Datos Personales
+        </MainButton>
+      </form>
+      <div className={css["text-container"]}>
+        <Link className={css.link} to={"/edit-password"}>
+          <LinksText>Editar Contraseña</LinksText>
+        </Link>
+      </div>
+    </Card>
+  );
+}
+
+export { LoginForm, SignUpForm, ChangeUserDataForm };

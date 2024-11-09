@@ -4,8 +4,8 @@ import { MainText, SecondaryText } from "../../ui/texts";
 import { MainButton } from "../../ui/buttons";
 import { useNavigate } from "react-router-dom";
 import { loggedInState } from "../../recoil";
-import * as css from "./home.css";
 import { useRecoilValue } from "recoil";
+import * as css from "./home.css";
 import { useLogOut } from "../../hooks";
 
 function HomePage(props) {

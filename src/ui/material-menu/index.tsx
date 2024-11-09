@@ -4,8 +4,12 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MenuIcon from "@mui/icons-material/Menu";
 import { grey } from "@mui/material/colors";
+import { useLogin } from "../../hooks";
+import { useNavigate } from "react-router-dom";
 
 export default function BasicMenu() {
+  const { loggedIn, handleLogin } = useLogin();
+  const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -37,13 +41,37 @@ export default function BasicMenu() {
       >
         <MenuItem
           onClick={() => {
-            console.log("me clickearon");
+            if (loggedIn) {
+              navigate("/my-profile");
+            } else {
+              navigate("/login");
+            }
           }}
         >
           Mi perfil
         </MenuItem>
-        <MenuItem onClick={handleClose}>Mis mascotas reportadas</MenuItem>
-        <MenuItem onClick={handleClose}>Iniciar Sesion</MenuItem>
+        <MenuItem
+          onClick={() => {
+            if (loggedIn) {
+              console.log("estoy logueado");
+            } else {
+              console.log("no estoy logueado");
+            }
+          }}
+        >
+          Mis mascotas reportadas
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
+            if (loggedIn) {
+              console.log("estoy logueado");
+            } else {
+              console.log("no estoy logueado");
+            }
+          }}
+        >
+          {loggedIn ? "Cerrar Sesion" : "Inicia Sesion"}
+        </MenuItem>
       </Menu>
     </div>
   );
