@@ -1,11 +1,12 @@
 import { useRecoilState, useRecoilValue } from "recoil";
-import { loggedInAtom } from "../recoil";
+import { loggedInAtom, userDataAtom } from "../recoil";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { loginToAPI, signUpToAPI } from "../lib/api";
+import { loginToAPI, signUpToAPI, updateDataAPI } from "../lib/api";
 
 export function useLogin() {
-  const [loggedIn, setLogIn] = useRecoilState(loggedInAtom);
+  const [token, setToken] = useRecoilState(loggedInAtom);
+  const [userData, setUserData] = useRecoilState(userDataAtom);
   const navigate = useNavigate();
 
   async function handleLogin(email, password, confirmPassword?, name?) {
@@ -13,7 +14,8 @@ export function useLogin() {
     if (confirmPassword) {
       try {
         const res = await signUpToAPI(name, email, password, confirmPassword);
-        setLogIn(res);
+        setToken(res.token);
+        setUserData(res.user);
       } catch (error) {
         console.error("Error en la llamada SignUp a la API :", error);
       }
@@ -21,19 +23,20 @@ export function useLogin() {
       // sino, del login
       try {
         const res = await loginToAPI(email, password);
-        setLogIn(res);
+        setToken(res.token);
+        setUserData(res.user);
       } catch (error) {
         console.error("Error en la llamada LogIn a la API:", error);
       }
     }
   }
   useEffect(() => {
-    if (loggedIn) {
+    if (token) {
       navigate("/");
     }
-  }, [loggedIn]);
+  }, [token]);
 
-  return { handleLogin, loggedIn };
+  return { handleLogin, token };
 }
 
 export function useLogOut() {
@@ -42,4 +45,14 @@ export function useLogOut() {
     setLogIn(null);
   }
   return { handleLogOut };
+}
+
+export function useUpdateData() {
+  const [loggedIn, setLogIn] = useRecoilState(loggedInAtom);
+  async function handleUpdateData(name, city, token) {
+    try {
+      const res = updateDataAPI(name, city, token);
+    } catch {}
+  }
+  return { handleUpdateData };
 }

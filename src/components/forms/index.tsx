@@ -78,16 +78,11 @@ function SignUpForm({ handleSignupForm }) {
   );
 }
 
-function ChangeUserDataForm({ name, email, handleChangeData }) {
+function ChangeUserDataForm({ name, ciudad, token, handleChangeData }) {
   const onSubmit = (e) => {
     e.preventDefault();
     const target = e.target as any;
-    handleChangeData(
-      target.email.value,
-      target.password.value,
-      target.confirmPassword.value,
-      target.name.value
-    );
+    handleChangeData(target.name.value, target.city.value, token);
   };
   return (
     <Card className={css.container}>
@@ -100,10 +95,10 @@ function ChangeUserDataForm({ name, email, handleChangeData }) {
           placeholder={name}
         ></MyTextField>
         <MyTextField
-          label="Email"
-          type="email"
-          name="email"
-          placeholder={email}
+          label="Ciudad"
+          type="text"
+          name="city"
+          placeholder={ciudad}
         ></MyTextField>
         <MainButton type="submit" handleClick={() => {}}>
           Editar Datos Personales

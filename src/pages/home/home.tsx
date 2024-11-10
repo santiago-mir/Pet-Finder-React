@@ -3,7 +3,7 @@ import mainImage from "../../assets/logo.png";
 import { MainText, SecondaryText } from "../../ui/texts";
 import { MainButton } from "../../ui/buttons";
 import { useNavigate } from "react-router-dom";
-import { loggedInState } from "../../recoil";
+import { loggedInState, userDataState } from "../../recoil";
 import { useRecoilValue } from "recoil";
 import * as css from "./home.css";
 import { useLogOut } from "../../hooks";
@@ -11,24 +11,24 @@ import { useLogOut } from "../../hooks";
 function HomePage(props) {
   const { handleLogOut } = useLogOut();
   const navigate = useNavigate();
-  const loggedInStatus = useRecoilValue(loggedInState);
-  if (loggedInStatus) {
+  const token = useRecoilValue(loggedInState);
+  const userData = useRecoilValue(userDataState);
+  if (token) {
     console.log("estoy logueado");
-    console.log(loggedInStatus);
+    console.log(userData);
   } else {
     console.log("no estoy logueado");
   }
   return (
     <div className={css.home}>
       <MainText>
-        Bienvenido a Pet Finder{" "}
-        {loggedInStatus ? <div>{loggedInStatus.user.firstName}</div> : null}
+        Bienvenido a Pet Finder {token ? <div>{userData.name}</div> : null}
       </MainText>
       <img className={css.logo} src={mainImage} alt="logo" />
       <SecondaryText>
         Encontrá y reportá mascotas perdidas cerca de tu ubicación
       </SecondaryText>
-      {loggedInStatus ? (
+      {token ? (
         // si el user esta logueado
         <div className={css.container}>
           <MainButton

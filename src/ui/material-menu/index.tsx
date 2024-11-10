@@ -8,7 +8,7 @@ import { useLogin } from "../../hooks";
 import { useNavigate } from "react-router-dom";
 
 export default function BasicMenu() {
-  const { loggedIn, handleLogin } = useLogin();
+  const { token, handleLogin } = useLogin();
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -41,7 +41,7 @@ export default function BasicMenu() {
       >
         <MenuItem
           onClick={() => {
-            if (loggedIn) {
+            if (token) {
               navigate("/my-profile");
             } else {
               navigate("/login");
@@ -52,7 +52,7 @@ export default function BasicMenu() {
         </MenuItem>
         <MenuItem
           onClick={() => {
-            if (loggedIn) {
+            if (token) {
               console.log("estoy logueado");
             } else {
               console.log("no estoy logueado");
@@ -63,14 +63,14 @@ export default function BasicMenu() {
         </MenuItem>
         <MenuItem
           onClick={() => {
-            if (loggedIn) {
+            if (token) {
               console.log("estoy logueado");
             } else {
               console.log("no estoy logueado");
             }
           }}
         >
-          {loggedIn ? "Cerrar Sesion" : "Inicia Sesion"}
+          {token ? "Cerrar Sesion" : "Inicia Sesion"}
         </MenuItem>
       </Menu>
     </div>

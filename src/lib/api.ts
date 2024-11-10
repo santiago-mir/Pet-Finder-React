@@ -36,3 +36,22 @@ export async function loginToAPI(
   });
   return response.json();
 }
+
+export async function updateDataAPI(
+  name: string,
+  city: string,
+  token: string
+): Promise<any> {
+  const response = await fetch("http://localhost:3002/menu/update-data", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: "bearer " + token,
+    },
+    body: JSON.stringify({
+      name,
+      city,
+    }),
+  });
+  return response.json();
+}
