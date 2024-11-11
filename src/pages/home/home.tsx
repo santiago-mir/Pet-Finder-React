@@ -15,7 +15,6 @@ function HomePage(props) {
   const userData = useRecoilValue(userDataState);
   if (token) {
     console.log("estoy logueado");
-    console.log(userData);
   } else {
     console.log("no estoy logueado");
   }

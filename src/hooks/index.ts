@@ -1,7 +1,7 @@
 import { useRecoilState, useRecoilValue } from "recoil";
 import { loggedInAtom, userDataAtom } from "../recoil";
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { loginToAPI, signUpToAPI, updateDataAPI } from "../lib/api";
 
 export function useLogin() {
@@ -48,11 +48,23 @@ export function useLogOut() {
 }
 
 export function useUpdateData() {
-  const [loggedIn, setLogIn] = useRecoilState(loggedInAtom);
+  const navigate = useNavigate();
+  const isInitialMount = useRef(true);
+  const [userData, setUserData] = useRecoilState(userDataAtom);
   async function handleUpdateData(name, city, token) {
     try {
-      const res = updateDataAPI(name, city, token);
-    } catch {}
+      const res = await updateDataAPI(name, city, token);
+      setUserData(res);
+    } catch (error) {
+      console.error("Error en la llamada updateData a la API:", error);
+    }
   }
+  useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+    } else if (userData) {
+      navigate("/");
+    }
+  }, [userData]);
   return { handleUpdateData };
 }
