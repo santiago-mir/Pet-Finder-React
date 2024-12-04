@@ -1,15 +1,25 @@
 import { useRecoilState, useRecoilValue } from "recoil";
-import { loggedInAtom, userDataAtom } from "../recoil";
+import { loggedInAtom, userDataAtom, userDataState } from "../recoil";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
-import { loginToAPI, signUpToAPI, updateDataAPI } from "../lib/api";
+import {
+  loginToAPI,
+  signUpToAPI,
+  updateDataAPI,
+  updatePasswordAPI,
+} from "../lib/api";
 
 export function useLogin() {
   const [token, setToken] = useRecoilState(loggedInAtom);
   const [userData, setUserData] = useRecoilState(userDataAtom);
   const navigate = useNavigate();
 
-  async function handleLogin(email, password, confirmPassword?, name?) {
+  async function handleLogin(
+    email: string,
+    password: string,
+    confirmPassword?: string,
+    name?: string
+  ) {
     // si tengo confirmPassword, vengo del signup
     if (confirmPassword) {
       try {
@@ -51,7 +61,7 @@ export function useUpdateData() {
   const navigate = useNavigate();
   const isInitialMount = useRef(true);
   const [userData, setUserData] = useRecoilState(userDataAtom);
-  async function handleUpdateData(name, city, token) {
+  async function handleUpdateData(name: string, city: string, token: string) {
     try {
       const res = await updateDataAPI(name, city, token);
       setUserData(res);
@@ -67,4 +77,38 @@ export function useUpdateData() {
     }
   }, [userData]);
   return { handleUpdateData };
+}
+export function useUpdatePassword() {
+  const navigate = useNavigate();
+  const isInitialMount = useRef(true);
+  const [userState, setUserData] = useRecoilState(userDataAtom);
+  const [token, setToken] = useRecoilState(loggedInAtom);
+  const userData = useRecoilValue(userDataState);
+  async function handleUpdatePassword(
+    password: string,
+    confirmPassword: string,
+    token: string
+  ) {
+    try {
+      const resPassword = await updatePasswordAPI(
+        password,
+        confirmPassword,
+        token
+      );
+      //relogueo a la API
+      const resLogin = await loginToAPI(userData.email, password);
+      setToken(resLogin.token);
+      setUserData(resLogin.user);
+    } catch (error) {
+      console.error("Error en la llamada updateData a la API:", error);
+    }
+  }
+  useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+    } else if (userState) {
+      navigate("/");
+    }
+  }, [userState]);
+  return { handleUpdatePassword };
 }

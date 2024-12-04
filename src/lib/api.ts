@@ -55,3 +55,22 @@ export async function updateDataAPI(
   });
   return response.json();
 }
+
+export async function updatePasswordAPI(
+  password: string,
+  confirmPassword: string,
+  token: string
+): Promise<any> {
+  const response = await fetch("http://localhost:3002/menu/update-password", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: "bearer " + token,
+    },
+    body: JSON.stringify({
+      password,
+      confirmPassword,
+    }),
+  });
+  return response.json();
+}

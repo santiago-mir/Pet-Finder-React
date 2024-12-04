@@ -112,5 +112,41 @@ function ChangeUserDataForm({ name, ciudad, token, handleChangeData }) {
     </Card>
   );
 }
+function ChangeUserPassword({ token, handleChangePassword }) {
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const target = e.target as any;
+    handleChangePassword(
+      target.password.value,
+      target.confirmPassword.value,
+      token
+    );
+  };
+  return (
+    <Card className={css.container}>
+      <SecondaryText>Tu contraseña</SecondaryText>
+      <form onSubmit={onSubmit} className={css.form}>
+        <MyTextField
+          label="Nueva Contraseña"
+          type="text"
+          name="password"
+        ></MyTextField>
+        <MyTextField
+          label="Confirmar Contraseña"
+          type="text"
+          name="confirmPassword"
+        ></MyTextField>
+        <MainButton type="submit" handleClick={() => {}}>
+          Editar Contraseña
+        </MainButton>
+      </form>
+      <div className={css["text-container"]}>
+        <Link className={css.link} to={"/my-profile"}>
+          <LinksText>Editar Datos Personales</LinksText>
+        </Link>
+      </div>
+    </Card>
+  );
+}
 
-export { LoginForm, SignUpForm, ChangeUserDataForm };
+export { LoginForm, SignUpForm, ChangeUserDataForm, ChangeUserPassword };

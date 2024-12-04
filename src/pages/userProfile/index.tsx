@@ -5,8 +5,9 @@ import { useNavigate } from "react-router-dom";
 import { loggedInState, userDataState } from "../../recoil";
 import { useRecoilValue } from "recoil";
 import * as css from "./index.css";
-import { ChangeUserDataForm } from "../../components/forms";
+import { ChangeUserDataForm, ChangeUserPassword } from "../../components/forms";
 import { useUpdateData } from "../../hooks";
+import { useUpdatePassword } from "../../hooks";
 
 function UserProfile(props) {
   const { handleUpdateData } = useUpdateData();
@@ -34,4 +35,17 @@ function UserProfile(props) {
   }
 }
 
-export { UserProfile };
+function UserPassword(props) {
+  const token = useRecoilValue(loggedInState);
+  const { handleUpdatePassword } = useUpdatePassword();
+  return (
+    <div className={css.profile}>
+      <ChangeUserPassword
+        token={token}
+        handleChangePassword={handleUpdatePassword}
+      ></ChangeUserPassword>
+    </div>
+  );
+}
+
+export { UserProfile, UserPassword };
