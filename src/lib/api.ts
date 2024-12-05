@@ -74,3 +74,21 @@ export async function updatePasswordAPI(
   });
   return response.json();
 }
+
+export async function getUserLocationMapbox(lat: number, lng: number) {
+  const response = await fetch(
+    "https://api.mapbox.com/geocoding/v5/mapbox.places/" +
+      lng +
+      "," +
+      lat +
+      ".json?access_token=" +
+      process.env.MAPBOX_TOKEN,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  return response.json();
+}

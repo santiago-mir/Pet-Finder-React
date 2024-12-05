@@ -3,10 +3,12 @@ import mainImage from "../../assets/logo.png";
 import { MainText, SecondaryText } from "../../ui/texts";
 import { MainButton, SecondaryButton } from "../../ui/buttons";
 import { useNavigate } from "react-router-dom";
+import { useUserLocation } from "../../hooks";
 import * as css from "./ins.css";
 
 function InstructionsPage(props) {
   const navigate = useNavigate();
+  const { handleUserLocation } = useUserLocation();
   return (
     <div className={css.instructions}>
       <MainText>¿Como funciona Pet Finder?</MainText>
@@ -21,7 +23,14 @@ function InstructionsPage(props) {
       </SecondaryText>
 
       <div className={css.container}>
-        <SecondaryButton type="button" handleClick={() => {}}>
+        <SecondaryButton
+          type="button"
+          handleClick={() => {
+            navigator.geolocation.getCurrentPosition((res) => {
+              handleUserLocation(res.coords.latitude, res.coords.longitude);
+            });
+          }}
+        >
           Compartir mi Ubicacion
         </SecondaryButton>
         <SecondaryButton

@@ -3,6 +3,7 @@ import { loggedInAtom, userDataAtom, userDataState } from "../recoil";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import {
+  getUserLocationMapbox,
   loginToAPI,
   signUpToAPI,
   updateDataAPI,
@@ -111,4 +112,12 @@ export function useUpdatePassword() {
     }
   }, [userState]);
   return { handleUpdatePassword };
+}
+
+export function useUserLocation() {
+  async function handleUserLocation(lat: number, lng: number) {
+    const res = await getUserLocationMapbox(lat, lng);
+    console.log(res.features[2].text);
+  }
+  return { handleUserLocation };
 }
