@@ -41,7 +41,7 @@ function HomePage(props) {
           <MainButton
             type="button"
             handleClick={() => {
-              console.log("hola");
+              navigate("/report-pet");
             }}
           >
             Reportar una Mascota Perdida

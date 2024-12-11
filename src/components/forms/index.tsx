@@ -149,4 +149,31 @@ function ChangeUserPassword({ token, handleChangePassword }) {
   );
 }
 
-export { LoginForm, SignUpForm, ChangeUserDataForm, ChangeUserPassword };
+function ReportLostPetForm({ handleReportPet }) {
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const target = e.target as any;
+    handleReportPet();
+  };
+  return (
+    <Card className={css.container}>
+      <SecondaryText>
+        Ingresá la siguiente información para realizar el reporte de la mascota
+      </SecondaryText>
+      <form onSubmit={onSubmit} className={css.form}>
+        <MyTextField label="Nombre" type="text" name="name"></MyTextField>
+        <MainButton type="submit" handleClick={() => {}}>
+          Reportar Mascota
+        </MainButton>
+      </form>
+    </Card>
+  );
+}
+
+export {
+  LoginForm,
+  SignUpForm,
+  ChangeUserDataForm,
+  ChangeUserPassword,
+  ReportLostPetForm,
+};

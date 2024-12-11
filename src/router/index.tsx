@@ -10,6 +10,7 @@ import { SignUpPage } from "../pages/signup/signup";
 import { InstructionsPage } from "../pages/instructions/ins";
 import { UserProfile } from "../pages/userProfile";
 import { UserPassword } from "../pages/userProfile";
+import { ReportPage } from "../pages/reportPet";
 
 import { Layout } from "../components/layout";
 
@@ -22,6 +23,7 @@ const router = createBrowserRouter(
       <Route path="/instructions" element={<InstructionsPage />} />
       <Route path="/my-profile" element={<UserProfile />} />
       <Route path="/edit-password" element={<UserPassword />} />
+      <Route path="/report-pet" element={<ReportPage />} />
     </Route>
   )
 );
