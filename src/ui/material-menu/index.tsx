@@ -4,11 +4,12 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MenuIcon from "@mui/icons-material/Menu";
 import { grey } from "@mui/material/colors";
-import { useLogin } from "../../hooks";
+import { useLogin, useLogOut } from "../../hooks";
 import { useNavigate } from "react-router-dom";
 
 export default function BasicMenu() {
-  const { token, handleLogin } = useLogin();
+  const { token } = useLogin();
+  const { handleLogOut } = useLogOut();
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -64,9 +65,9 @@ export default function BasicMenu() {
         <MenuItem
           onClick={() => {
             if (token) {
-              console.log("estoy logueado");
+              handleLogOut();
             } else {
-              console.log("no estoy logueado");
+              navigate("/login");
             }
           }}
         >
