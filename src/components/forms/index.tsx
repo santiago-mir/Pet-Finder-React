@@ -5,6 +5,8 @@ import { SecondaryText, LinksText } from "../../ui/texts";
 import Card from "@mui/material/Card";
 import * as css from "./form.css";
 import { Link } from "react-router-dom";
+import { useDropzone } from "react-dropzone";
+import { BasicDropzone } from "../dropzone";
 
 function LoginForm({ handleLoginForm }) {
   const onSubmit = (e) => {
@@ -155,6 +157,7 @@ function ReportLostPetForm({ handleReportPet }) {
     const target = e.target as any;
     handleReportPet();
   };
+
   return (
     <Card className={css.container}>
       <SecondaryText>
@@ -162,6 +165,7 @@ function ReportLostPetForm({ handleReportPet }) {
       </SecondaryText>
       <form onSubmit={onSubmit} className={css.form}>
         <MyTextField label="Nombre" type="text" name="name"></MyTextField>
+        <BasicDropzone />
         <MainButton type="submit" handleClick={() => {}}>
           Reportar Mascota
         </MainButton>
