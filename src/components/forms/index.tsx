@@ -5,8 +5,8 @@ import { SecondaryText, LinksText } from "../../ui/texts";
 import Card from "@mui/material/Card";
 import * as css from "./form.css";
 import { Link } from "react-router-dom";
-import { useDropzone } from "react-dropzone";
 import { BasicDropzone } from "../dropzone";
+import { Mapbox } from "../mapbox";
 
 function LoginForm({ handleLoginForm }) {
   const onSubmit = (e) => {
@@ -166,6 +166,7 @@ function ReportLostPetForm({ handleReportPet }) {
       <form onSubmit={onSubmit} className={css.form}>
         <MyTextField label="Nombre" type="text" name="name"></MyTextField>
         <BasicDropzone />
+        <Mapbox />
         <MainButton type="submit" handleClick={() => {}}>
           Reportar Mascota
         </MainButton>
