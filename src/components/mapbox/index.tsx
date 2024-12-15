@@ -8,7 +8,7 @@ import * as React from "react";
 const accessToken = process.env.MAPBOX_TOKEN;
 const SearchBox: any = SearchBoxComp;
 
-function Mapbox() {
+function Mapbox({ onLocationUpdated }) {
   const mapContainerRef = useRef();
   const mapInstanceRef = useRef(null);
   const markerRef = useRef(null); // Referencia para el marcador
@@ -30,7 +30,7 @@ function Mapbox() {
   const handleSearch = (result) => {
     if (result && result.features && result.features[0]) {
       const [lng, lat] = result.features[0].geometry.coordinates;
-
+      onLocationUpdated({ lng, lat });
       // Centrar el mapa en la ubicación seleccionada
       mapInstanceRef.current.flyTo({ center: [lng, lat], zoom: 14 });
 

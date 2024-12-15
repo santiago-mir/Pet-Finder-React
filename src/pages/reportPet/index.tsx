@@ -6,16 +6,14 @@ import { loggedInState, userDataState } from "../../recoil";
 import { useRecoilValue } from "recoil";
 import * as css from "./index.css";
 import { ReportLostPetForm } from "../../components/forms";
+import { useReportPet } from "../../hooks";
 
 function ReportPage(props) {
+  const { handleReportPet } = useReportPet();
   return (
     <div className={css.home}>
       <MainText>Reporta tu Mascota Perdida</MainText>
-      <ReportLostPetForm
-        handleReportPet={() => {
-          console.log("hola");
-        }}
-      ></ReportLostPetForm>
+      <ReportLostPetForm handleReportPet={handleReportPet}></ReportLostPetForm>
     </div>
   );
 }

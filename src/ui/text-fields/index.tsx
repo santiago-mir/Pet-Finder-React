@@ -9,6 +9,11 @@ export function MyTextField({ label, type, name, placeholder = "" }) {
       label={label}
       name={name}
       defaultValue={placeholder}
-    ></TextField>
+      InputProps={{
+        style: {
+          minHeight: "50px", // Altura personalizada del input
+        },
+      }}
+    />
   );
 }

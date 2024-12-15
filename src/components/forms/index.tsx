@@ -155,18 +155,41 @@ function ReportLostPetForm({ handleReportPet }) {
   const onSubmit = (e) => {
     e.preventDefault();
     const target = e.target as any;
-    handleReportPet();
+    console.log(target);
+    handleReportPet(
+      target.name.value,
+      dataURL,
+      dataLocation.lat,
+      dataLocation.lng
+    );
+  };
+  let dataURL = "";
+  let dataLocation = {
+    lat: "",
+    lng: "",
   };
 
+  function handleImageUpload(data) {
+    dataURL = data;
+  }
+
+  function handleLocation(data) {
+    dataLocation = data;
+  }
   return (
     <Card className={css.container}>
       <SecondaryText>
         Ingresá la siguiente información para realizar el reporte de la mascota
       </SecondaryText>
-      <form onSubmit={onSubmit} className={css.form}>
-        <MyTextField label="Nombre" type="text" name="name"></MyTextField>
-        <BasicDropzone />
-        <Mapbox />
+      <form onSubmit={onSubmit} className={css["form-report"]}>
+        <MyTextField
+          label="Nombre de tu mascota"
+          type="text"
+          name="name"
+        ></MyTextField>
+        <BasicDropzone onImageUpload={handleImageUpload} />
+        <SecondaryText>¿Donde viste a tu mascota por ultima vez?</SecondaryText>
+        <Mapbox onLocationUpdated={handleLocation} />
         <MainButton type="submit" handleClick={() => {}}>
           Reportar Mascota
         </MainButton>

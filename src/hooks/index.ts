@@ -121,3 +121,15 @@ export function useUserLocation() {
   }
   return { handleUserLocation };
 }
+
+export function useReportPet() {
+  async function handleReportPet(
+    name: string,
+    dataURL: string,
+    lat: string,
+    lng: string
+  ) {
+    console.log(name, lat, lng);
+  }
+  return { handleReportPet };
+}

@@ -2,20 +2,29 @@ import React, { useEffect, useState } from "react";
 import * as css from "./index.css";
 import { useDropzone } from "react-dropzone";
 
-function BasicDropzone(props) {
+function BasicDropzone({ onImageUpload }) {
   const [files, setFiles] = useState([]);
+
   const { getRootProps, getInputProps } = useDropzone({
     accept: {
-      "image/*": [],
+      "image/*": [], // Solo imágenes
     },
     onDrop: (acceptedFiles) => {
-      setFiles(
-        acceptedFiles.map((file) =>
-          Object.assign(file, {
-            preview: URL.createObjectURL(file),
-          })
-        )
-      );
+      const updatedFiles = acceptedFiles.map((file) => {
+        const reader = new FileReader();
+
+        reader.onload = () => {
+          const dataUrl = reader.result; // Aquí está la data URL
+          onImageUpload(dataUrl); // Envía la data URL al componente padre
+        };
+
+        reader.readAsDataURL(file); // Convierte el archivo a data URL
+        return Object.assign(file, {
+          preview: URL.createObjectURL(file), // Crea un preview para mostrar
+        });
+      });
+
+      setFiles(updatedFiles);
     },
   });
 
@@ -25,9 +34,8 @@ function BasicDropzone(props) {
         <img
           src={file.preview}
           className={css.img}
-          // Revoke data uri after image is loaded
           onLoad={() => {
-            URL.revokeObjectURL(file.preview);
+            URL.revokeObjectURL(file.preview); // Limpia el preview de la memoria
           }}
         />
       </div>
@@ -35,7 +43,7 @@ function BasicDropzone(props) {
   ));
 
   useEffect(() => {
-    // Make sure to revoke the data uris to avoid memory leaks, will run on unmount
+    // Limpia los objetos URL al desmontar el componente
     return () => files.forEach((file) => URL.revokeObjectURL(file.preview));
   }, [files]);
 
@@ -43,7 +51,7 @@ function BasicDropzone(props) {
     <section className={css.container}>
       <div {...getRootProps({ className: css.dropzone })}>
         <input {...getInputProps()} />
-        <p>Drag 'n' drop some files here, or click to select files</p>
+        <p>Subi una foto de tu mascota perdida</p>
       </div>
       <aside className={css.thumbscont}>{thumbs}</aside>
     </section>

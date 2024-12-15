@@ -11,6 +11,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100px;
   padding: 20px;
   border: 2px dashed #cccccc;
   border-radius: 8px;
