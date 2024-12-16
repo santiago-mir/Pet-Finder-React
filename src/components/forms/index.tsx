@@ -151,16 +151,16 @@ function ChangeUserPassword({ token, handleChangePassword }) {
   );
 }
 
-function ReportLostPetForm({ handleReportPet }) {
+function ReportLostPetForm({ handleReportPet, token }) {
   const onSubmit = (e) => {
     e.preventDefault();
     const target = e.target as any;
-    console.log(target);
     handleReportPet(
       target.name.value,
       dataURL,
       dataLocation.lat,
-      dataLocation.lng
+      dataLocation.lng,
+      token
     );
   };
   let dataURL = "";

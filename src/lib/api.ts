@@ -92,3 +92,44 @@ export async function getUserLocationMapbox(lat: number, lng: number) {
   );
   return response.json();
 }
+
+async function getCityName(lat: number, lng: number) {
+  const responseMapbox = await fetch(
+    // busco el name de la ciudad
+    "https://api.mapbox.com/geocoding/v5/mapbox.places/" +
+      lng +
+      "," +
+      lat +
+      ".json?access_token=" +
+      process.env.MAPBOX_TOKEN,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  const resJSON = await responseMapbox.json();
+  const cityName = resJSON.features[2].text;
+  return cityName;
+}
+
+export async function reportLostPetAPI(
+  petName: string,
+  imgURL: string,
+  lat: number,
+  lng: number,
+  token: string
+) {
+  const cityName = await getCityName(lat, lng);
+  console.log(cityName);
+  const responseReport = await fetch("http://localhost:3002/report", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: "bearer " + token,
+    },
+    body: JSON.stringify({ petName, imgURL, lat, lng, cityName }),
+  });
+  return responseReport.json();
+}

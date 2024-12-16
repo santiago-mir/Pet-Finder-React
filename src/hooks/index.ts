@@ -8,6 +8,7 @@ import {
   signUpToAPI,
   updateDataAPI,
   updatePasswordAPI,
+  reportLostPetAPI,
 } from "../lib/api";
 
 export function useLogin() {
@@ -126,10 +127,12 @@ export function useReportPet() {
   async function handleReportPet(
     name: string,
     dataURL: string,
-    lat: string,
-    lng: string
+    lat: number,
+    lng: number,
+    token: string
   ) {
-    console.log(name, lat, lng);
+    const res = await reportLostPetAPI(name, dataURL, lat, lng, token);
+    console.log(res);
   }
   return { handleReportPet };
 }
