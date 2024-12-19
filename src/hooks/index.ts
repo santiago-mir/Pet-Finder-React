@@ -1,5 +1,10 @@
 import { useRecoilState, useRecoilValue } from "recoil";
-import { loggedInAtom, userDataAtom, userDataState } from "../recoil";
+import {
+  loggedInAtom,
+  userDataAtom,
+  userDataState,
+  reportPetFlag,
+} from "../recoil";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import {
@@ -124,6 +129,7 @@ export function useUserLocation() {
 }
 
 export function useReportPet() {
+  const [status, setReportStatus] = useRecoilState(reportPetFlag);
   async function handleReportPet(
     name: string,
     dataURL: string,
@@ -132,7 +138,7 @@ export function useReportPet() {
     token: string
   ) {
     const res = await reportLostPetAPI(name, dataURL, lat, lng, token);
-    console.log(res);
+    setReportStatus(res);
   }
   return { handleReportPet };
 }

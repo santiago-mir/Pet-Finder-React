@@ -34,7 +34,7 @@ export const userDataState = selector({
     }
   },
 });
-
+// atomo y selector para la userLocation (geodata)
 export const userLocationAtom = atom({
   key: "userLocationAtom",
   default: null,
@@ -50,5 +50,20 @@ export const userLocationState = selector({
         lng: userLocation.lng,
       };
     }
+  },
+});
+
+// atomo y selector para la accion de reportar un pet (flag)
+
+export const reportPetFlag = atom({
+  key: "reportPetFlag",
+  default: null,
+});
+
+export const reportPetFlagState = selector({
+  key: "reportState",
+  get: ({ get }) => {
+    const status = get(reportPetFlag);
+    return status;
   },
 });

@@ -1,10 +1,12 @@
+const API_BASE_URL = process.env.API_BASE_URL;
+
 export async function signUpToAPI(
   name: string,
   email: string,
   password: string,
   confirmPassword: string
 ): Promise<any> {
-  const signUpRes = await fetch("http://localhost:3002/auth", {
+  const signUpRes = await fetch(API_BASE_URL + "/auth", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -24,7 +26,7 @@ export async function loginToAPI(
   email: string,
   password: string
 ): Promise<any> {
-  const response = await fetch("http://localhost:3002/auth/token", {
+  const response = await fetch(API_BASE_URL + "/auth/token", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -42,7 +44,7 @@ export async function updateDataAPI(
   city: string,
   token: string
 ): Promise<any> {
-  const response = await fetch("http://localhost:3002/menu/update-data", {
+  const response = await fetch(API_BASE_URL + "/menu/update-data", {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -61,7 +63,7 @@ export async function updatePasswordAPI(
   confirmPassword: string,
   token: string
 ): Promise<any> {
-  const response = await fetch("http://localhost:3002/menu/update-password", {
+  const response = await fetch(API_BASE_URL + "/menu/update-password", {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -122,8 +124,7 @@ export async function reportLostPetAPI(
   token: string
 ) {
   const cityName = await getCityName(lat, lng);
-  console.log(cityName);
-  const responseReport = await fetch("http://localhost:3002/report", {
+  const responseReport = await fetch(API_BASE_URL + "/report", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
