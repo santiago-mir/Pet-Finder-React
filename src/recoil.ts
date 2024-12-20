@@ -67,3 +67,22 @@ export const reportPetFlagState = selector({
     return status;
   },
 });
+
+// atomo y selector para los reportes del usuario
+
+export const userReportsAtom = atom({
+  key: "userReports",
+  default: null,
+});
+
+export const userReportsState = selector({
+  key: "userReportsState",
+  get: ({ get }) => {
+    const userReports = get(userReportsAtom);
+    if (userReports) {
+      return userReports;
+    } else {
+      return null;
+    }
+  },
+});

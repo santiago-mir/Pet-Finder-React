@@ -3,20 +3,26 @@ import mainImage from "../../assets/logo.png";
 import { MainText, SecondaryText } from "../../ui/texts";
 import { MainButton } from "../../ui/buttons";
 import { useNavigate } from "react-router-dom";
-import { loggedInState, userDataState } from "../../recoil";
-import { useRecoilValue } from "recoil";
+import {
+  loggedInState,
+  userDataState,
+  userReportsAtom,
+  userReportsState,
+} from "../../recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import * as css from "./home.css";
-import { useLogOut } from "../../hooks";
+import { useLogOut, useUserReports } from "../../hooks";
 
 function HomePage(props) {
   const { handleLogOut } = useLogOut();
+  const { handleUpdateUserReports } = useUserReports();
   const navigate = useNavigate();
   const token = useRecoilValue(loggedInState);
   const userData = useRecoilValue(userDataState);
-  if (token) {
-    console.log("estoy logueado");
-  } else {
-    console.log("no estoy logueado");
+  const userReports = useRecoilValue(userReportsState);
+  if (token && !userReports) {
+    console.log("entre por el handle");
+    handleUpdateUserReports(token);
   }
   return (
     <div className={css.home}>

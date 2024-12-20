@@ -134,3 +134,14 @@ export async function reportLostPetAPI(
   });
   return responseReport.json();
 }
+
+export async function getUserReportsAPI(token: string) {
+  const res = await fetch(API_BASE_URL + "/user-reports", {
+    method: "GET",
+    headers: {
+      "Content-type": "application/json",
+      authorization: "bearer " + token,
+    },
+  });
+  return res.json();
+}

@@ -4,6 +4,7 @@ import {
   userDataAtom,
   userDataState,
   reportPetFlag,
+  userReportsAtom,
 } from "../recoil";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
@@ -14,6 +15,7 @@ import {
   updateDataAPI,
   updatePasswordAPI,
   reportLostPetAPI,
+  getUserReportsAPI,
 } from "../lib/api";
 
 export function useLogin() {
@@ -141,4 +143,14 @@ export function useReportPet() {
     setReportStatus(res);
   }
   return { handleReportPet };
+}
+
+export function useUserReports() {
+  const [userReports, setUserReports] = useRecoilState(userReportsAtom);
+  async function handleUpdateUserReports(token: string) {
+    const res = await getUserReportsAPI(token);
+    setUserReports(res);
+  }
+
+  return { handleUpdateUserReports };
 }

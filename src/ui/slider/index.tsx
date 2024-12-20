@@ -27,7 +27,7 @@ export function ImageSlider({ slides }) {
       </div>
       <div
         className={css.slide}
-        style={{ backgroundImage: `url(${slides[currentIndex].url})` }}
+        style={{ backgroundImage: `url(${slides[currentIndex].img_URL})` }}
       ></div>
       <div className={css["dots-container"]}>
         {slides.map((slide, slideIndex) => (
