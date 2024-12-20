@@ -54,9 +54,9 @@ export default function BasicMenu() {
         <MenuItem
           onClick={() => {
             if (token) {
-              console.log("estoy logueado");
+              navigate("/user-reports");
             } else {
-              console.log("no estoy logueado");
+              navigate("/login");
             }
           }}
         >
