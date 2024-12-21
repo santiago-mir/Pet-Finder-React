@@ -16,12 +16,11 @@ import * as css from "./index.css";
 
 function UserReports(props) {
   const userReports = useRecoilValue(userReportsState);
-  const slides = userReports;
   return (
-    <div>
-      <h1>Soy la user reports</h1>
+    <div className={css.reports}>
+      <MainText>Tus Reportes</MainText>
       <div className={css.container}>
-        <ImageSlider slides={slides} />
+        <ImageSlider slides={userReports} />
       </div>
     </div>
   );
