@@ -13,7 +13,7 @@
 .left,
 .right {
   position: absolute;
-  top: 50%;
+  top: 70%;
   transform: translate(0, -50%);
   font-size: 65px;
   color: #fff;
@@ -42,6 +42,6 @@
 
 .editButton {
   position: absolute;
-  bottom: 10px;
+  bottom: -50px;
   right: 10px;
 }

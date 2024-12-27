@@ -13,6 +13,8 @@ function ReportPage(props) {
   const reportStatus = useRecoilValue(reportPetFlagState);
   const navigate = useNavigate();
   const token = useRecoilValue(loggedInState);
+  const [successClass, setSuccessClass] = useState(css.hidden);
+  const [bgClass, setBgClass] = useState(css.container);
   useEffect(() => {
     if (!token) {
       navigate("/login");
@@ -20,16 +22,20 @@ function ReportPage(props) {
   }, [token]);
   useEffect(() => {
     if (reportStatus) {
-      navigate("/");
+      setSuccessClass(css.success);
+      setBgClass(css.blur);
     }
   }, [reportStatus]);
   return (
-    <div className={css.home}>
-      <MainText>Reporta tu Mascota Perdida</MainText>
-      <ReportLostPetForm
-        handleReportPet={handleReportPet}
-        token={token}
-      ></ReportLostPetForm>
+    <div>
+      <div className={bgClass}>
+        <MainText>Reporta tu Mascota Perdida</MainText>
+        <ReportLostPetForm
+          handleReportPet={handleReportPet}
+          token={token}
+        ></ReportLostPetForm>
+      </div>
+      <div className={successClass}>hola que tal</div>
     </div>
   );
 }

@@ -32,8 +32,12 @@ export function ImageSlider({ slides }) {
       <div className={css.right} onClick={goToNext}>
         &gt;
       </div>
-      <MainText className={css.title}>{currentSlide.name}</MainText>
-      <h3 className={css.subtitle}>{currentSlide.city}</h3>
+      <div>
+        <SecondaryText className={css.title}>{currentSlide.name}</SecondaryText>
+        <SecondaryText className={css.subtitle}>
+          Perdido cerca de {currentSlide.city}
+        </SecondaryText>
+      </div>
       <div
         className={css.slide}
         style={{ backgroundImage: `url(${currentSlide.img_URL})` }}
