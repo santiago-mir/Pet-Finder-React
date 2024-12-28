@@ -37,14 +37,16 @@
 }
 
 .success {
-  display: inherit;
+  display: flex;
   position: fixed;
+  flex-direction: column;
+  gap: 20px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: white; /* Fondo para destacar */
+  background: white;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra para resaltar */
-  z-index: 2; /* Asegura que esté sobre el fondo borroso */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  z-index: 2;
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { MainText, SecondaryText } from "../../ui/texts";
-import { MainButton } from "../../ui/buttons";
+import { MainButton, SecondaryButton } from "../../ui/buttons";
 import { useNavigate } from "react-router-dom";
 import { loggedInState, reportPetFlagState, userDataState } from "../../recoil";
 import { useRecoilValue } from "recoil";
@@ -35,7 +35,25 @@ function ReportPage(props) {
           token={token}
         ></ReportLostPetForm>
       </div>
-      <div className={successClass}>hola que tal</div>
+      <div className={successClass}>
+        <SecondaryText>El reporte se realizo con exito</SecondaryText>
+        <SecondaryButton
+          type="button"
+          handleClick={() => {
+            navigate("/user-reports");
+          }}
+        >
+          Ver tus mascotas reportadas
+        </SecondaryButton>
+        <SecondaryButton
+          type="button"
+          handleClick={() => {
+            navigate("/");
+          }}
+        >
+          Volver al menu
+        </SecondaryButton>
+      </div>
     </div>
   );
 }
