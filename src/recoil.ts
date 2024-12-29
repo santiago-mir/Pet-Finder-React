@@ -29,7 +29,6 @@ export const userDataState = selector({
       return {
         name: userData.firstName,
         email: userData.email,
-        city: userData.city,
       };
     }
   },
@@ -48,6 +47,7 @@ export const userLocationState = selector({
       return {
         lat: userLocation.lat,
         lng: userLocation.lng,
+        city: userLocation.cityName,
       };
     }
   },
@@ -81,6 +81,25 @@ export const userReportsState = selector({
     const userReports = get(userReportsAtom);
     if (userReports) {
       return userReports;
+    } else {
+      return null;
+    }
+  },
+});
+
+// atomo y selector para mascotas perdidas cerca de la zona del user
+
+export const lostPetsAtom = atom({
+  key: "lostPets",
+  default: null,
+});
+
+export const lostPetsState = selector({
+  key: "lostPetsState",
+  get: ({ get }) => {
+    const lostPets = get(lostPetsAtom);
+    if (lostPets) {
+      return lostPets;
     } else {
       return null;
     }

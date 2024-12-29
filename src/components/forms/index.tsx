@@ -80,7 +80,7 @@ function SignUpForm({ handleSignupForm }) {
   );
 }
 
-function ChangeUserDataForm({ name, ciudad, token, handleChangeData }) {
+function ChangeUserDataForm({ name, token, handleChangeData }) {
   const onSubmit = (e) => {
     e.preventDefault();
     const target = e.target as any;
@@ -95,12 +95,6 @@ function ChangeUserDataForm({ name, ciudad, token, handleChangeData }) {
           type="text"
           name="name"
           placeholder={name}
-        ></MyTextField>
-        <MyTextField
-          label="Ciudad"
-          type="text"
-          name="city"
-          placeholder={ciudad}
         ></MyTextField>
         <MainButton type="submit" handleClick={() => {}}>
           Editar Datos Personales

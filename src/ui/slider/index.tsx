@@ -23,6 +23,8 @@ export function ImageSlider({ slides }) {
   };
 
   const currentSlide = slides[currentIndex];
+  // true es userReports, false lost pets
+  const flag = slides[0].img_URL ? true : false;
 
   return (
     <div className={css.container}>
@@ -40,7 +42,11 @@ export function ImageSlider({ slides }) {
       </div>
       <div
         className={css.slide}
-        style={{ backgroundImage: `url(${currentSlide.img_URL})` }}
+        style={{
+          backgroundImage: `url(${
+            flag ? currentSlide.img_URL : currentSlide.imgURL
+          })`,
+        }}
       >
         <div className={css.editButton}>
           <MainButton
@@ -49,7 +55,7 @@ export function ImageSlider({ slides }) {
               console.log("hola");
             }}
           >
-            Editar Reporte
+            {flag ? "Editar Reporte" : "Reportar Mascota"}
           </MainButton>
         </div>
       </div>

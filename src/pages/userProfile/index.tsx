@@ -26,7 +26,6 @@ function UserProfile(props) {
       <div className={css.profile}>
         <ChangeUserDataForm
           name={userData.name}
-          ciudad={userData.city}
           token={token}
           handleChangeData={handleUpdateData}
         ></ChangeUserDataForm>

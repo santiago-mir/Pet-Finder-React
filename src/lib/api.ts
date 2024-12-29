@@ -145,3 +145,16 @@ export async function getUserReportsAPI(token: string) {
   });
   return res.json();
 }
+
+export async function getLostPetsAPI(lat: number, lng: number) {
+  const res = await fetch(
+    API_BASE_URL + "/lost-pets/" + "?lat=" + lat + "&lng=" + lng,
+    {
+      method: "GET",
+      headers: {
+        "Content-type": "application/json",
+      },
+    }
+  );
+  return res.json();
+}

@@ -12,6 +12,7 @@ import { UserProfile } from "../pages/userProfile";
 import { UserPassword } from "../pages/userProfile";
 import { ReportPage } from "../pages/reportPet";
 import { UserReports } from "../pages/userReports";
+import { LostPets } from "../pages/lostPets";
 
 import { Layout } from "../components/layout";
 
@@ -26,6 +27,7 @@ const router = createBrowserRouter(
       <Route path="/edit-password" element={<UserPassword />} />
       <Route path="/report-pet" element={<ReportPage />} />
       <Route path="/user-reports" element={<UserReports />} />
+      <Route path="/lost-pets" element={<LostPets />} />
     </Route>
   )
 );

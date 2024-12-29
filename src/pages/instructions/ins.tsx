@@ -5,6 +5,8 @@ import { MainButton, SecondaryButton } from "../../ui/buttons";
 import { useNavigate } from "react-router-dom";
 import { useUserLocation } from "../../hooks";
 import * as css from "./ins.css";
+import { userLocationAtom } from "../../recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 
 function InstructionsPage(props) {
   const navigate = useNavigate();

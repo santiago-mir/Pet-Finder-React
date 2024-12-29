@@ -11,11 +11,12 @@ import {
 } from "../../recoil";
 import { useRecoilState, useRecoilValue } from "recoil";
 import * as css from "./home.css";
-import { useLogOut, useUserReports } from "../../hooks";
+import { useLogOut, useUserLocation, useUserReports } from "../../hooks";
 
 function HomePage(props) {
   const { handleLogOut } = useLogOut();
   const { handleUpdateUserReports } = useUserReports();
+  const { handleUserLocation } = useUserLocation();
   const navigate = useNavigate();
   const token = useRecoilValue(loggedInState);
   const userData = useRecoilValue(userDataState);
@@ -39,10 +40,12 @@ function HomePage(props) {
           <MainButton
             type="button"
             handleClick={() => {
-              console.log("hola");
+              navigator.geolocation.getCurrentPosition((res) => {
+                handleUserLocation(res.coords.latitude, res.coords.longitude);
+              });
             }}
           >
-            Dar mi Ubicacion Actual
+            Ver mascotas perdidas cerca de tu zona
           </MainButton>
           <MainButton
             type="button"

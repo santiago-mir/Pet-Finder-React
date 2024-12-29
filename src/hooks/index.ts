@@ -3,8 +3,10 @@ import {
   loggedInAtom,
   userDataAtom,
   userDataState,
+  userLocationAtom,
   reportPetFlag,
   userReportsAtom,
+  lostPetsAtom,
 } from "../recoil";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
@@ -16,6 +18,7 @@ import {
   updatePasswordAPI,
   reportLostPetAPI,
   getUserReportsAPI,
+  getLostPetsAPI,
 } from "../lib/api";
 
 export function useLogin() {
@@ -123,10 +126,24 @@ export function useUpdatePassword() {
 }
 
 export function useUserLocation() {
+  const navigate = useNavigate();
+  const isInitialMount = useRef(true);
+  const [location, setUserLocation] = useRecoilState(userLocationAtom);
+  const [lostPets, setLostPets] = useRecoilState(lostPetsAtom);
   async function handleUserLocation(lat: number, lng: number) {
     const res = await getUserLocationMapbox(lat, lng);
-    console.log(res.features[2].text);
+    const cityName = res.features[2].text;
+    setUserLocation({ lat, lng, cityName });
+    const lostPets = await getLostPetsAPI(lat, lng);
+    setLostPets(lostPets);
   }
+  useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+    } else if (lostPets) {
+      navigate("/lost-pets");
+    }
+  }, [lostPets]);
   return { handleUserLocation };
 }
 
