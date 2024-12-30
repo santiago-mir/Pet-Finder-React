@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { MainText, SecondaryText } from "../../ui/texts";
+import emptyImage from "../../assets/empty.png";
 import { MainButton } from "../../ui/buttons";
 import { useNavigate } from "react-router-dom";
 import {
@@ -16,19 +17,28 @@ import * as css from "./index.css";
 
 function UserReports(props) {
   const userReports = useRecoilValue(userReportsState);
-  return (
-    <div className={css.reports}>
-      <MainText>Tus Reportes</MainText>
-      <div className={css.container}>
-        <ImageSlider
-          slides={userReports}
-          handleClick={() => {
-            console.log("soy el handle");
-          }}
-        />
+  if (userReports) {
+    return (
+      <div className={css.reports}>
+        <MainText>Tus Reportes</MainText>
+        <div className={css.container}>
+          <ImageSlider
+            slides={userReports}
+            handleClick={() => {
+              console.log("soy el handle");
+            }}
+          />
+        </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return (
+      <div className={css.reports}>
+        <MainText>No reportaste ninguna mascota aun</MainText>
+        <img className={css.image} src={emptyImage} alt="empty" />
+      </div>
+    );
+  }
 }
 
 export { UserReports };

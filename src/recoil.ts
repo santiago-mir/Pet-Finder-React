@@ -1,10 +1,14 @@
 import { useParams } from "react-router-dom";
 import { atom, selector } from "recoil";
+import { recoilPersist } from "recoil-persist";
+
+const { persistAtom } = recoilPersist();
 
 // atomo y selector para el token
 export const loggedInAtom = atom({
   key: "loggedInAtom",
   default: null,
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const loggedInState = selector({
@@ -19,6 +23,7 @@ export const loggedInState = selector({
 export const userDataAtom = atom({
   key: "userDataAtom",
   default: null,
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const userDataState = selector({
@@ -37,6 +42,7 @@ export const userDataState = selector({
 export const userLocationAtom = atom({
   key: "userLocationAtom",
   default: null,
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const userLocationState = selector({
@@ -58,6 +64,7 @@ export const userLocationState = selector({
 export const reportPetFlag = atom({
   key: "reportPetFlag",
   default: null,
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const reportPetFlagState = selector({
@@ -73,6 +80,7 @@ export const reportPetFlagState = selector({
 export const userReportsAtom = atom({
   key: "userReports",
   default: null,
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const userReportsState = selector({
@@ -92,6 +100,7 @@ export const userReportsState = selector({
 export const lostPetsAtom = atom({
   key: "lostPets",
   default: null,
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const lostPetsState = selector({
@@ -110,6 +119,7 @@ export const lostPetsState = selector({
 export const seenPetReport = atom({
   key: "seenPet",
   default: null,
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const seenPetState = selector({

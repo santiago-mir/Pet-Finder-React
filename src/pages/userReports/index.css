@@ -12,3 +12,8 @@
   height: 280px;
   margin: 0 auto;
 }
+
+.image {
+  object-fit: scale-down;
+  max-height: 400px;
+}
