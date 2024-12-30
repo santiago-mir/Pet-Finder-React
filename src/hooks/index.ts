@@ -7,6 +7,7 @@ import {
   reportPetFlag,
   userReportsAtom,
   lostPetsAtom,
+  seenPetReport,
 } from "../recoil";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
@@ -173,6 +174,7 @@ export function useUserReports() {
   return { handleUpdateUserReports };
 }
 export function useReportSeenPet() {
+  const [report, setReport] = useRecoilState(seenPetReport);
   async function handleReportSeenPet(
     userName: string,
     phone: number,
@@ -187,7 +189,7 @@ export function useReportSeenPet() {
       petName,
       ownerId
     );
-    console.log(res);
+    setReport(res);
   }
 
   return { handleReportSeenPet };

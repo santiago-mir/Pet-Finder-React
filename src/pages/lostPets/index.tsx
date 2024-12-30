@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { MainText, SecondaryText } from "../../ui/texts";
-import { MainButton } from "../../ui/buttons";
+import { MainButton, SecondaryButton } from "../../ui/buttons";
 import { useNavigate } from "react-router-dom";
 import {
   loggedInState,
   lostPetsState,
   reportPetFlagState,
+  seenPetReport,
+  seenPetState,
   userDataState,
   userLocationState,
   userReportsState,
 } from "../../recoil";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { ImageSlider } from "../../ui/slider";
 import * as css from "./index.css";
 import { ReportSeenPet } from "../../components/forms";
@@ -18,19 +20,28 @@ import { useReportSeenPet } from "../../hooks";
 
 function LostPets(props) {
   const { handleReportSeenPet } = useReportSeenPet();
+  const navigate = useNavigate();
+  const [report, setReport] = useRecoilState(seenPetReport);
+  const reportSeenPet = useRecoilValue(seenPetState);
   const lostPets = useRecoilValue(lostPetsState);
   const userLocation = useRecoilValue(userLocationState);
   const [formClass, setFormClass] = useState(css.hidden);
   const [bgClass, setBgClass] = useState(css.reports);
+  const [successClass, setSuccessClass] = useState(css.hidden);
   const [petName, setPetName] = useState(null);
   const [ownerId, setOwnerId] = useState(null);
-  console.log(lostPets);
   useEffect(() => {
     if (petName) {
       setFormClass(css.form);
       setBgClass(css.blur);
     }
   }, [petName]);
+  useEffect(() => {
+    if (reportSeenPet) {
+      setFormClass(css.hidden);
+      setSuccessClass(css.success);
+    }
+  });
   return (
     <div>
       <div className={bgClass}>
@@ -57,6 +68,27 @@ function LostPets(props) {
             setBgClass(css.reports);
           }}
         ></ReportSeenPet>
+      </div>
+      <div className={successClass}>
+        <SecondaryText>El reporte se realizo con exito</SecondaryText>
+        <SecondaryButton
+          type="button"
+          handleClick={() => {
+            navigate("/");
+          }}
+        >
+          Volver al menu
+        </SecondaryButton>
+        <SecondaryButton
+          type="button"
+          handleClick={() => {
+            setReport(null);
+            setSuccessClass(css.hidden);
+            setBgClass(css.reports);
+          }}
+        >
+          Cerrar
+        </SecondaryButton>
       </div>
     </div>
   );

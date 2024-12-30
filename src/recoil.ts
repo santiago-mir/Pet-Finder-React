@@ -105,3 +105,21 @@ export const lostPetsState = selector({
     }
   },
 });
+// atomo y selector para reporte de mascota perdida
+
+export const seenPetReport = atom({
+  key: "seenPet",
+  default: null,
+});
+
+export const seenPetState = selector({
+  key: "seenPetState",
+  get: ({ get }) => {
+    const report = get(seenPetReport);
+    if (report) {
+      return report;
+    } else {
+      return null;
+    }
+  },
+});

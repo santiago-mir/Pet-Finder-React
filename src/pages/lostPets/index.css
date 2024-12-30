@@ -8,6 +8,10 @@
   height: 100vh;
 }
 
+.hidden {
+  display: none;
+}
+
 .reports {
   filter: none;
 }
@@ -21,10 +25,6 @@
   margin: 0 auto;
 }
 
-.hidden {
-  display: none;
-}
-
 .form {
   display: flex;
   position: fixed;
@@ -35,5 +35,20 @@
   transform: translate(-50%, -50%);
   padding: 20px;
   border-radius: 8px;
+  z-index: 2;
+}
+
+.success {
+  display: flex;
+  position: fixed;
+  flex-direction: column;
+  gap: 20px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   z-index: 2;
 }
