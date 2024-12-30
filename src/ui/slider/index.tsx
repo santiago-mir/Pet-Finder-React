@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { MainText, SecondaryText } from "../texts";
 import * as css from "./index.css";
 import { MainButton } from "../buttons";
+import { useNavigate } from "react-router-dom";
 
-export function ImageSlider({ slides }) {
+export function ImageSlider({ slides, handleClick }) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const navigate = useNavigate();
 
   const goToPrevious = () => {
     const isFirstSlide = currentIndex === 0;
@@ -52,7 +54,9 @@ export function ImageSlider({ slides }) {
           <MainButton
             type={"button"}
             handleClick={() => {
-              console.log("hola");
+              let petName = currentSlide.name;
+              let ownerId = currentSlide.ownerId;
+              handleClick(petName, ownerId);
             }}
           >
             {flag ? "Editar Reporte" : "Reportar Mascota"}

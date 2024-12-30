@@ -158,3 +158,26 @@ export async function getLostPetsAPI(lat: number, lng: number) {
   );
   return res.json();
 }
+export async function reportSeenPetAPI(
+  reporterName: string,
+  reporterPhone: number,
+  information: string,
+  petName: string,
+  ownerId: number
+) {
+  const res = await fetch(API_BASE_URL + "/report-seen-pet", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: "bearer " + "",
+    },
+    body: JSON.stringify({
+      information,
+      reporterPhone,
+      reporterName,
+      petName,
+      ownerId,
+    }),
+  });
+  return res.json();
+}

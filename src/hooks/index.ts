@@ -19,6 +19,7 @@ import {
   reportLostPetAPI,
   getUserReportsAPI,
   getLostPetsAPI,
+  reportSeenPetAPI,
 } from "../lib/api";
 
 export function useLogin() {
@@ -170,4 +171,24 @@ export function useUserReports() {
   }
 
   return { handleUpdateUserReports };
+}
+export function useReportSeenPet() {
+  async function handleReportSeenPet(
+    userName: string,
+    phone: number,
+    information: string,
+    petName: string,
+    ownerId: number
+  ) {
+    const res = await reportSeenPetAPI(
+      userName,
+      phone,
+      information,
+      petName,
+      ownerId
+    );
+    console.log(res);
+  }
+
+  return { handleReportSeenPet };
 }

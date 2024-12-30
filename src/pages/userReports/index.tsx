@@ -20,7 +20,12 @@ function UserReports(props) {
     <div className={css.reports}>
       <MainText>Tus Reportes</MainText>
       <div className={css.container}>
-        <ImageSlider slides={userReports} />
+        <ImageSlider
+          slides={userReports}
+          handleClick={() => {
+            console.log("soy el handle");
+          }}
+        />
       </div>
     </div>
   );

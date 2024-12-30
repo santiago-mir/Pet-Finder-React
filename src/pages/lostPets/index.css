@@ -1,4 +1,5 @@
-.reports {
+.reports,
+.blur {
   margin-top: 50px;
   text-align: center;
   display: flex;
@@ -7,8 +8,32 @@
   height: 100vh;
 }
 
+.reports {
+  filter: none;
+}
+
+.blur {
+  filter: blur(8px);
+}
 .container {
   width: 500px;
   height: 280px;
   margin: 0 auto;
+}
+
+.hidden {
+  display: none;
+}
+
+.form {
+  display: flex;
+  position: fixed;
+  flex-direction: column;
+  gap: 20px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  border-radius: 8px;
+  z-index: 2;
 }

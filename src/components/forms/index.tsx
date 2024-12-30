@@ -32,9 +32,6 @@ function LoginForm({ handleLoginForm }) {
         <Link className={css.link} to={"/signup"}>
           <LinksText>¿No tenes cuenta? Registrate</LinksText>
         </Link>
-        <Link className={css.link} to={"/"}>
-          <LinksText>¿Olvidate tu contraseña?</LinksText>
-        </Link>
       </div>
     </Card>
   );
@@ -191,6 +188,40 @@ function ReportLostPetForm({ handleReportPet, token }) {
     </Card>
   );
 }
+function ReportSeenPet({ handleReportPet, petName, handleClose, ownerId }) {
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const target = e.target as any;
+    handleReportPet(
+      target.name.value,
+      target.phone.value,
+      target.message.value,
+      petName,
+      ownerId
+    );
+  };
+  return (
+    <Card className={css.container}>
+      <SecondaryText>Reportar informacion de {petName}</SecondaryText>
+      <form onSubmit={onSubmit} className={css["form-report"]}>
+        <MyTextField label="Tu nombre" type="text" name="name"></MyTextField>
+        <MyTextField label="Tu telefono" type="tel" name="phone"></MyTextField>
+        <MyTextField
+          label="¿Donde lo viste?"
+          type="textarea"
+          name="message"
+          multi={true}
+        ></MyTextField>
+        <MainButton type="submit" handleClick={() => {}}>
+          Reportar Mascota
+        </MainButton>
+        <MainButton type="button" handleClick={handleClose}>
+          Cerrar
+        </MainButton>
+      </form>
+    </Card>
+  );
+}
 
 export {
   LoginForm,
@@ -198,4 +229,5 @@ export {
   ChangeUserDataForm,
   ChangeUserPassword,
   ReportLostPetForm,
+  ReportSeenPet,
 };
