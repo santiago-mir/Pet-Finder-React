@@ -60,7 +60,7 @@ function Mapbox({ onLocationUpdated }) {
           backgroundColor: "white",
           padding: "8px",
           borderRadius: "4px",
-          width: "300px",
+          maxWidth: "200px",
         }}
       >
         <SearchBox

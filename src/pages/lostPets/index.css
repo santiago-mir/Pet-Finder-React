@@ -20,7 +20,9 @@
   filter: blur(8px);
 }
 .container {
-  width: 500px;
+  width: 100%;
+  max-width: 500px;
+  padding: 10px;
   height: 280px;
   margin: 0 auto;
 }
