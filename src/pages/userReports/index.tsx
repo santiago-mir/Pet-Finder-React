@@ -1,31 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { MainText, SecondaryText } from "../../ui/texts";
 import emptyImage from "../../assets/empty.png";
-import { MainButton } from "../../ui/buttons";
-import { useNavigate } from "react-router-dom";
-import {
-  loggedInState,
-  reportPetFlagState,
-  userDataState,
-  userReportsState,
-} from "../../recoil";
-import { useRecoilValue } from "recoil";
-import { ReportLostPetForm } from "../../components/forms";
-import { useReportPet } from "../../hooks";
+import { reportIdAtom, userReportsState } from "../../recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { ImageSlider } from "../../ui/slider";
 import * as css from "./index.css";
+import { useNavigate } from "react-router-dom";
 
 function UserReports(props) {
+  const navigate = useNavigate();
   const userReports = useRecoilValue(userReportsState);
-  if (userReports) {
+  const [reportId, setReportId] = useRecoilState(reportIdAtom);
+  if (userReports.length > 0) {
     return (
       <div className={css.reports}>
         <MainText>Tus Reportes</MainText>
         <div className={css.container}>
           <ImageSlider
             slides={userReports}
-            handleClick={() => {
-              console.log("soy el handle");
+            handleClick={(reportId: number) => {
+              setReportId(reportId);
+              navigate("/edit-report");
             }}
           />
         </div>

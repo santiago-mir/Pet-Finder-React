@@ -133,3 +133,23 @@ export const seenPetState = selector({
     }
   },
 });
+
+// atomo y selector para el id del reporte a editar
+
+export const reportIdAtom = atom({
+  key: "reportId",
+  default: null,
+  effects_UNSTABLE: [persistAtom],
+});
+
+export const reportIdState = selector({
+  key: "reportIdState",
+  get: ({ get }) => {
+    const report = get(reportIdAtom);
+    if (report) {
+      return report;
+    } else {
+      return null;
+    }
+  },
+});

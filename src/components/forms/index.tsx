@@ -7,6 +7,8 @@ import * as css from "./form.css";
 import { Link } from "react-router-dom";
 import { BasicDropzone } from "../dropzone";
 import { Mapbox } from "../mapbox";
+import { useRecoilValue } from "recoil";
+import { reportIdState } from "../../recoil";
 
 function LoginForm({ handleLoginForm }) {
   const onSubmit = (e) => {
@@ -188,6 +190,55 @@ function ReportLostPetForm({ handleReportPet, token }) {
     </Card>
   );
 }
+function EditLostPetForm({ handleReportPet, token }) {
+  const reportId = useRecoilValue(reportIdState);
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const target = e.target as any;
+    handleReportPet(
+      target.name.value,
+      dataURL,
+      dataLocation.lat,
+      dataLocation.lng,
+      reportId,
+      token
+    );
+  };
+  let dataURL = "";
+  let dataLocation = {
+    lat: "",
+    lng: "",
+  };
+
+  function handleImageUpload(data) {
+    dataURL = data;
+  }
+
+  function handleLocation(data) {
+    dataLocation = data;
+  }
+  return (
+    <Card className={css.container}>
+      <SecondaryText>
+        Ingresá la siguiente información para editar el reporte de tu mascota
+      </SecondaryText>
+      <form onSubmit={onSubmit} className={css["form-report"]}>
+        <MyTextField
+          label="Nombre de tu mascota"
+          type="text"
+          name="name"
+        ></MyTextField>
+        <BasicDropzone onImageUpload={handleImageUpload} />
+        <SecondaryText>¿Donde viste a tu mascota por ultima vez?</SecondaryText>
+        <Mapbox onLocationUpdated={handleLocation} />
+        <MainButton type="submit" handleClick={() => {}}>
+          Editar Reporte
+        </MainButton>
+      </form>
+    </Card>
+  );
+}
+
 function ReportSeenPet({ handleReportPet, petName, handleClose, ownerId }) {
   const onSubmit = (e) => {
     e.preventDefault();
@@ -229,5 +280,6 @@ export {
   ChangeUserDataForm,
   ChangeUserPassword,
   ReportLostPetForm,
+  EditLostPetForm,
   ReportSeenPet,
 };

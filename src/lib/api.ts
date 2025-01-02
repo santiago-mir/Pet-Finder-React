@@ -135,6 +135,26 @@ export async function reportLostPetAPI(
   return responseReport.json();
 }
 
+export async function editReportPetAPI(
+  petName: string,
+  imgURL: string,
+  lat: number,
+  lng: number,
+  reportId: number,
+  token: string
+) {
+  const cityName = await getCityName(lat, lng);
+  const responseEditReport = await fetch(API_BASE_URL + "/edit-report", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: "bearer " + token,
+    },
+    body: JSON.stringify({ petName, imgURL, lat, lng, cityName, reportId }),
+  });
+  return responseEditReport.json();
+}
+
 export async function getUserReportsAPI(token: string) {
   const res = await fetch(API_BASE_URL + "/user-reports", {
     method: "GET",

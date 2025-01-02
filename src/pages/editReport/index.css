@@ -1,0 +1,52 @@
+.home {
+  margin-top: 30px;
+  gap: 30px;
+  text-align: center;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+.home,
+.blur {
+  display: grid;
+  padding: 40px;
+  gap: 10px;
+  align-items: center;
+}
+.container {
+  display: grid;
+  padding: 40px;
+  gap: 10px;
+  align-items: center;
+  text-align: center;
+}
+.home {
+  filter: none;
+}
+
+.blur {
+  filter: blur(8px);
+}
+
+.logo {
+  justify-self: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.success {
+  display: flex;
+  position: fixed;
+  flex-direction: column;
+  gap: 20px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  z-index: 2;
+}

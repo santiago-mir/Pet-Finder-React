@@ -21,13 +21,14 @@ import {
   getUserReportsAPI,
   getLostPetsAPI,
   reportSeenPetAPI,
+  editReportPetAPI,
 } from "../lib/api";
 
 export function useLogin() {
   const [token, setToken] = useRecoilState(loggedInAtom);
   const [userData, setUserData] = useRecoilState(userDataAtom);
   const navigate = useNavigate();
-
+  const isInitialMount = useRef(true);
   async function handleLogin(
     email: string,
     password: string,
@@ -55,7 +56,9 @@ export function useLogin() {
     }
   }
   useEffect(() => {
-    if (token) {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+    } else if (token) {
       navigate("/");
     }
   }, [token]);
@@ -65,8 +68,16 @@ export function useLogin() {
 
 export function useLogOut() {
   const [loggedIn, setLogIn] = useRecoilState(loggedInAtom);
+  const [userData, setUserData] = useRecoilState(userDataAtom);
+  const [location, setUserLocation] = useRecoilState(userLocationAtom);
+  const [userReports, setUserReports] = useRecoilState(userReportsAtom);
+  const [lostPets, setLostPets] = useRecoilState(lostPetsAtom);
   function handleLogOut() {
     setLogIn(null);
+    setUserData(null);
+    setUserLocation(null);
+    setUserReports(null);
+    setLostPets(null);
   }
   return { handleLogOut };
 }
@@ -163,6 +174,28 @@ export function useReportPet() {
   }
   return { handleReportPet };
 }
+export function useEditReport() {
+  const [status, setReportStatus] = useRecoilState(reportPetFlag);
+  async function handleEditReport(
+    name: string,
+    dataURL: string,
+    lat: number,
+    lng: number,
+    reportId: number,
+    token: string
+  ) {
+    const res = await editReportPetAPI(
+      name,
+      dataURL,
+      lat,
+      lng,
+      reportId,
+      token
+    );
+    setReportStatus(res);
+  }
+  return { handleEditReport };
+}
 
 export function useUserReports() {
   const [userReports, setUserReports] = useRecoilState(userReportsAtom);
@@ -173,6 +206,7 @@ export function useUserReports() {
 
   return { handleUpdateUserReports };
 }
+
 export function useReportSeenPet() {
   const [report, setReport] = useRecoilState(seenPetReport);
   async function handleReportSeenPet(

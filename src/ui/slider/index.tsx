@@ -54,9 +54,14 @@ export function ImageSlider({ slides, handleClick }) {
           <MainButton
             type={"button"}
             handleClick={() => {
-              let petName = currentSlide.name;
-              let ownerId = currentSlide.ownerId;
-              handleClick(petName, ownerId);
+              if (flag) {
+                let reportId = currentSlide.id;
+                handleClick(reportId);
+              } else {
+                let petName = currentSlide.name;
+                let ownerId = currentSlide.ownerId;
+                handleClick(petName, ownerId);
+              }
             }}
           >
             {flag ? "Editar Reporte" : "Reportar Mascota"}

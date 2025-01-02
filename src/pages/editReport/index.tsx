@@ -10,11 +10,11 @@ import {
 } from "../../recoil";
 import { useRecoilState, useRecoilValue } from "recoil";
 import * as css from "./index.css";
-import { ReportLostPetForm } from "../../components/forms";
-import { useReportPet, useUserReports } from "../../hooks";
+import { EditLostPetForm } from "../../components/forms";
+import { useEditReport, useReportPet, useUserReports } from "../../hooks";
 
-function ReportPage(props) {
-  const { handleReportPet } = useReportPet();
+function EditReportPage(props) {
+  const { handleEditReport } = useEditReport();
   const { handleUpdateUserReports } = useUserReports();
   const [report, setReportStatus] = useRecoilState(reportPetFlag);
   const reportStatus = useRecoilValue(reportPetFlagState);
@@ -38,14 +38,14 @@ function ReportPage(props) {
   return (
     <div>
       <div className={bgClass}>
-        <MainText>Reporta tu Mascota Perdida</MainText>
-        <ReportLostPetForm
-          handleReportPet={handleReportPet}
+        <MainText>Edita tu Reporte</MainText>
+        <EditLostPetForm
+          handleReportPet={handleEditReport}
           token={token}
-        ></ReportLostPetForm>
+        ></EditLostPetForm>
       </div>
       <div className={successClass}>
-        <SecondaryText>El reporte se realizo con exito</SecondaryText>
+        <SecondaryText>El reporte se edito con exito</SecondaryText>
         <SecondaryButton
           type="button"
           handleClick={() => {
@@ -67,4 +67,4 @@ function ReportPage(props) {
   );
 }
 
-export { ReportPage };
+export { EditReportPage };
