@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
 import { MyHeader } from "../header";
+import { MyFooter } from "../footer";
 import { MainButton } from "../../ui/buttons";
 import { MainText } from "../../ui/texts";
 import * as css from "./layuot.css";
@@ -13,6 +14,7 @@ function Layout(props) {
       <div className={css.container}>
         <Outlet />
       </div>
+      <MyFooter />
     </div>
   );
 }

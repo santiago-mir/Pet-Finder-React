@@ -15,12 +15,17 @@ export function MainText({ children, className = "" }) {
   );
 }
 
-export function SecondaryText({ children, className = "" }) {
+export function SecondaryText({
+  children,
+  className = "",
+  color = "black",
+  size = "20px",
+}) {
   return (
     <Typography
       variant="body1"
-      fontSize={20}
-      color={"black"}
+      fontSize={size}
+      color={color}
       fontWeight={"400"}
       className={className}
     >

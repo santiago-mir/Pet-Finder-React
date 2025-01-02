@@ -3,6 +3,8 @@ import { MainText, SecondaryText } from "../texts";
 import * as css from "./index.css";
 import { MainButton } from "../buttons";
 import { useNavigate } from "react-router-dom";
+import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
+import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 
 export function ImageSlider({ slides, handleClick }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -31,10 +33,10 @@ export function ImageSlider({ slides, handleClick }) {
   return (
     <div className={css.container}>
       <div className={css.left} onClick={goToPrevious}>
-        &lt;
+        <ArrowCircleLeftIcon fontSize="large" color="primary" />
       </div>
       <div className={css.right} onClick={goToNext}>
-        &gt;
+        <ArrowCircleRightIcon fontSize="large" color="primary" />
       </div>
       <div>
         <SecondaryText className={css.title}>{currentSlide.name}</SecondaryText>
@@ -71,7 +73,9 @@ export function ImageSlider({ slides, handleClick }) {
       <div className={css["dots-container"]}>
         {slides.map((slide, slideIndex) => (
           <div
-            className={css.dot}
+            className={`${css.dot} ${
+              currentIndex === slideIndex ? css.activeDot : ""
+            }`}
             key={slideIndex}
             onClick={() => goToSlide(slideIndex)}
           >

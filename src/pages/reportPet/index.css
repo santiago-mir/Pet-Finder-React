@@ -16,6 +16,8 @@
 .container {
   display: grid;
   padding: 40px;
+  max-width: 700px;
+  margin: 0 auto;
   gap: 10px;
   align-items: center;
   text-align: center;
