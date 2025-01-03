@@ -72,7 +72,9 @@ export function useLogOut() {
   const [location, setUserLocation] = useRecoilState(userLocationAtom);
   const [userReports, setUserReports] = useRecoilState(userReportsAtom);
   const [lostPets, setLostPets] = useRecoilState(lostPetsAtom);
+  const navigate = useNavigate();
   function handleLogOut() {
+    navigate("/");
     setLogIn(null);
     setUserData(null);
     setUserLocation(null);
