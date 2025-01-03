@@ -5,7 +5,8 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import "./index.css";
 import * as React from "react";
 
-const accessToken = process.env.MAPBOX_TOKEN;
+const accessToken =
+  "pk.eyJ1IjoibWFyY29zcmV1cXVlbiIsImEiOiJja3UxbXBzbHQzejJvMnBwcW4yN3pqemZuIn0.z65srWhOb5sS3GilPljOpw";
 const SearchBox: any = SearchBoxComp;
 
 function Mapbox({ onLocationUpdated }) {

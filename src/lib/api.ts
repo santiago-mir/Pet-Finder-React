@@ -1,5 +1,6 @@
-const API_BASE_URL = process.env.API_BASE_URL;
-
+const API_BASE_URL = "https://back-pet-production.up.railway.app/";
+const MAPBOX_TOKEN =
+  "pk.eyJ1IjoibWFyY29zcmV1cXVlbiIsImEiOiJja3UxbXBzbHQzejJvMnBwcW4yN3pqemZuIn0.z65srWhOb5sS3GilPljOpw";
 export async function signUpToAPI(
   name: string,
   email: string,
@@ -84,7 +85,7 @@ export async function getUserLocationMapbox(lat: number, lng: number) {
       "," +
       lat +
       ".json?access_token=" +
-      process.env.MAPBOX_TOKEN,
+      MAPBOX_TOKEN,
     {
       method: "GET",
       headers: {
@@ -103,7 +104,7 @@ async function getCityName(lat: number, lng: number) {
       "," +
       lat +
       ".json?access_token=" +
-      process.env.MAPBOX_TOKEN,
+      MAPBOX_TOKEN,
     {
       method: "GET",
       headers: {

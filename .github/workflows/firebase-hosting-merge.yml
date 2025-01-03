@@ -16,9 +16,6 @@ jobs:
           node-version: 18
       - run: yarn install --frozen-lockfile
       - run: npm run build
-      - run: |
-          echo "MAPBOX_TOKEN=${{ secrets.MAPBOX_TOKEN }}" >> .env
-          echo "API_BASE_URL=${{ secrets.API_BASE_URL }}" >> .env
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
