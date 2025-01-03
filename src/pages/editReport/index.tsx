@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { MainText, SecondaryText } from "../../ui/texts";
-import { MainButton, SecondaryButton } from "../../ui/buttons";
+import { SecondaryButton } from "../../ui/buttons";
 import { useNavigate } from "react-router-dom";
-import {
-  loggedInState,
-  reportPetFlag,
-  reportPetFlagState,
-  userDataState,
-} from "../../recoil";
+import { loggedInState, reportPetFlag, reportPetFlagState } from "../../recoil";
 import { useRecoilState, useRecoilValue } from "recoil";
-import * as css from "./index.css";
 import { EditLostPetForm } from "../../components/forms";
-import { useEditReport, useReportPet, useUserReports } from "../../hooks";
+import { useEditReport, useUserReports } from "../../hooks";
+import * as css from "./index.css";
 
 function EditReportPage(props) {
   const { handleEditReport } = useEditReport();

@@ -14,7 +14,6 @@ import { ReportPage } from "../pages/reportPet";
 import { UserReports } from "../pages/userReports";
 import { LostPets } from "../pages/lostPets";
 import { EditReportPage } from "../pages/editReport";
-
 import { Layout } from "../components/layout";
 
 const router = createBrowserRouter(

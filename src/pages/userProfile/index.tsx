@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { MainText, SecondaryText } from "../../ui/texts";
-import { MainButton, SecondaryButton } from "../../ui/buttons";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { loggedInState, userDataState } from "../../recoil";
 import { useRecoilValue } from "recoil";

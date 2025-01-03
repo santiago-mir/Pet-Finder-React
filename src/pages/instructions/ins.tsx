@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import mainImage from "../../assets/logo.png";
 import { MainText, SecondaryText } from "../../ui/texts";
-import { MainButton, SecondaryButton } from "../../ui/buttons";
+import { SecondaryButton } from "../../ui/buttons";
 import { useNavigate } from "react-router-dom";
 import { useUserLocation } from "../../hooks";
 import * as css from "./ins.css";
-import { userLocationAtom } from "../../recoil";
-import { useRecoilState, useRecoilValue } from "recoil";
 
 function InstructionsPage(props) {
   const navigate = useNavigate();

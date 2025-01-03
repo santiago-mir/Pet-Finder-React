@@ -9,8 +9,8 @@ import {
   lostPetsAtom,
   seenPetReport,
 } from "../recoil";
-import { useNavigate, useParams } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useRef } from "react";
 import {
   getUserLocationMapbox,
   loginToAPI,

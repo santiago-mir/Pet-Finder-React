@@ -1,13 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { MainText, SecondaryText } from "../../ui/texts";
-import { MainButton, SecondaryButton } from "../../ui/buttons";
+import { SecondaryButton } from "../../ui/buttons";
 import { useNavigate } from "react-router-dom";
-import {
-  loggedInState,
-  reportPetFlag,
-  reportPetFlagState,
-  userDataState,
-} from "../../recoil";
+import { loggedInState, reportPetFlag, reportPetFlagState } from "../../recoil";
 import { useRecoilState, useRecoilValue } from "recoil";
 import * as css from "./index.css";
 import { ReportLostPetForm } from "../../components/forms";

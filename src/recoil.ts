@@ -1,4 +1,3 @@
-import { useParams } from "react-router-dom";
 import { atom, selector } from "recoil";
 import { recoilPersist } from "recoil-persist";
 

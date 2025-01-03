@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { MainText, SecondaryText } from "../texts";
+import { SecondaryText } from "../texts";
 import * as css from "./index.css";
 import { MainButton } from "../buttons";
 import { useNavigate } from "react-router-dom";

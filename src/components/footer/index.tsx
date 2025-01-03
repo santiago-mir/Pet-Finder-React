@@ -1,7 +1,5 @@
 import React, { useMemo } from "react";
 import * as css from "./index.css";
-import mainImage from "../../assets/logo.png";
-import BasicMenu from "../../ui/material-menu";
 import instagramLogo from "../../assets/instagram.png";
 import linkedinLogo from "../../assets/linkedin.png";
 import githubLogo from "../../assets/github-sign.png";
