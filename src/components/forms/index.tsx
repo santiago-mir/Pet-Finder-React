@@ -4,7 +4,7 @@ import { MyTextField } from "../../ui/text-fields";
 import { SecondaryText, LinksText } from "../../ui/texts";
 import Card from "@mui/material/Card";
 import * as css from "./form.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BasicDropzone } from "../dropzone";
 import { Mapbox } from "../mapbox";
 import { useRecoilValue } from "recoil";
@@ -80,6 +80,7 @@ function SignUpForm({ handleSignupForm }) {
 }
 
 function ChangeUserDataForm({ name, token, handleChangeData }) {
+  const navigate = useNavigate();
   const onSubmit = (e) => {
     e.preventDefault();
     const target = e.target as any;
@@ -98,6 +99,14 @@ function ChangeUserDataForm({ name, token, handleChangeData }) {
         <MainButton type="submit" handleClick={() => {}}>
           Editar Datos Personales
         </MainButton>
+        <MainButton
+          type="button"
+          handleClick={() => {
+            navigate("/");
+          }}
+        >
+          Volver al menu
+        </MainButton>
       </form>
       <div className={css["text-container"]}>
         <Link className={css.link} to={"/edit-password"}>
@@ -108,6 +117,7 @@ function ChangeUserDataForm({ name, token, handleChangeData }) {
   );
 }
 function ChangeUserPassword({ token, handleChangePassword }) {
+  const navigate = useNavigate();
   const onSubmit = (e) => {
     e.preventDefault();
     const target = e.target as any;
@@ -134,6 +144,14 @@ function ChangeUserPassword({ token, handleChangePassword }) {
         <MainButton type="submit" handleClick={() => {}}>
           Editar Contraseña
         </MainButton>
+        <MainButton
+          type="button"
+          handleClick={() => {
+            navigate("/");
+          }}
+        >
+          Volver al menu
+        </MainButton>
       </form>
       <div className={css["text-container"]}>
         <Link className={css.link} to={"/my-profile"}>
@@ -145,6 +163,7 @@ function ChangeUserPassword({ token, handleChangePassword }) {
 }
 
 function ReportLostPetForm({ handleReportPet, token }) {
+  const navigate = useNavigate();
   const onSubmit = (e) => {
     e.preventDefault();
     const target = e.target as any;
@@ -186,12 +205,21 @@ function ReportLostPetForm({ handleReportPet, token }) {
         <MainButton type="submit" handleClick={() => {}}>
           Reportar Mascota
         </MainButton>
+        <MainButton
+          type="button"
+          handleClick={() => {
+            navigate("/");
+          }}
+        >
+          Volver al menu
+        </MainButton>
       </form>
     </Card>
   );
 }
 function EditLostPetForm({ handleReportPet, token }) {
   const reportId = useRecoilValue(reportIdState);
+  const navigate = useNavigate();
   const onSubmit = (e) => {
     e.preventDefault();
     const target = e.target as any;
@@ -233,6 +261,14 @@ function EditLostPetForm({ handleReportPet, token }) {
         <Mapbox onLocationUpdated={handleLocation} />
         <MainButton type="submit" handleClick={() => {}}>
           Editar Reporte
+        </MainButton>
+        <MainButton
+          type="button"
+          handleClick={() => {
+            navigate("/");
+          }}
+        >
+          Volver al menu
         </MainButton>
       </form>
     </Card>

@@ -6,6 +6,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { ImageSlider } from "../../ui/slider";
 import { useNavigate } from "react-router-dom";
 import * as css from "./index.css";
+import { MainButton } from "../../ui/buttons";
 
 function UserReports(props) {
   const navigate = useNavigate();
@@ -30,6 +31,16 @@ function UserReports(props) {
                 navigate("/edit-report");
               }}
             />
+          </div>
+          <div className={css.button}>
+            <MainButton
+              type={"button"}
+              handleClick={() => {
+                navigate("/");
+              }}
+            >
+              Volver al menu
+            </MainButton>
           </div>
         </div>
       );

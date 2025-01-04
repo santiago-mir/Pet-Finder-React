@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { MainText, SecondaryText } from "../../ui/texts";
-import { SecondaryButton } from "../../ui/buttons";
+import { MainButton, SecondaryButton } from "../../ui/buttons";
 import emptyImage from "../../assets/empty.png";
 import { useNavigate } from "react-router-dom";
 import {
@@ -60,6 +60,16 @@ function LostPets(props) {
                   setOwnerId(ownerId);
                 }}
               />
+            </div>
+            <div className={css.button}>
+              <MainButton
+                type={"button"}
+                handleClick={() => {
+                  navigate("/");
+                }}
+              >
+                Volver al menu
+              </MainButton>
             </div>
           </div>
           <div className={formClass}>
