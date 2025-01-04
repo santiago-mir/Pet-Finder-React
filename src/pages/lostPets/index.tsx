@@ -68,7 +68,7 @@ function LostPets(props) {
                   navigate("/");
                 }}
               >
-                Volver al menu
+                Volver al Menu
               </MainButton>
             </div>
           </div>
